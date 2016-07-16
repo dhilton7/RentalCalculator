@@ -1,21 +1,22 @@
 
+/* Container */
+.container {
+	background-color: rgb(235, 235, 240);
+	padding: 20px 40px 40px 40px;
+}
+
 /* Show labels on top of input */
-label {
+.form-control label {
 	display: block;
 }
 
 /* Submit section of forms */
 .submit {
-	padding: 50px 0;
 	float: right;
 }
 
-.btn-lg {
-	padding: 20px 75px;
-}
-
-.form-control {
-	/*width: 60% !important;*/
+.btn-submit {
+	padding: 15px 60px;
 }
 
 .col-lg-12 .form-control {
