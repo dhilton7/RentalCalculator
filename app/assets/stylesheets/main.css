@@ -15,7 +15,19 @@ label {
 }
 
 .form-control {
-	width: 60% !important;
+	/*width: 60% !important;*/
+}
+
+.col-lg-12 .form-control {
+	width: 50%;
+}
+
+.col-lg-6 .form-control {
+	width: 50%;
+}
+
+.col-lg-4 .form-control {
+	width: 60%;
 }
 
 .row {
