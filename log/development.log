@@ -1,0 +1,2161 @@
+  [1m[36m (7.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.5ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateDeals (20160715023150)
+  [1m[35m (0.8ms)[0m  BEGIN
+  [1m[36m (8.9ms)[0m  [1mCREATE TABLE "deals" ("id" serial primary key, "address" character varying, "city" character varying, "state" character varying, "zip" character varying, "purchase_price" integer, "arv" integer, "closing_costs" integer, "estimated_repairs" integer, "down_payment" integer, "interest_rate" decimal(4,2), "loan_points" integer, "loan_years" integer, "gross_rent" integer, "other_income" integer, "electricity" integer, "water_sewer" integer, "pmi" decimal(10,2), "insurance" decimal(10,2), "property_tax" decimal(10,2), "other_expenses" integer, "vacancy" integer, "repairs_maintenance" integer, "cap_ex" integer, "property_management" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160715023150"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'deals'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  INSERT INTO "deals" ("purchase_price", "down_payment", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["purchase_price", 105000], ["down_payment", 21000], ["created_at", "2016-07-15 02:55:28.590704"], ["updated_at", "2016-07-15 02:55:28.590704"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.5ms)[0m  [1mUPDATE "deals" SET "interest_rate" = $1, "loan_years" = $2, "updated_at" = $3 WHERE "deals"."id" = $4[0m  [["interest_rate", "4.5"], ["loan_years", 30], ["updated_at", "2016-07-15 02:55:45.687317"], ["id", 1]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36mDeal Load (2.8ms)[0m  [1mSELECT  "deals".* FROM "deals"  ORDER BY "deals"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "deals" SET "repairs_maintenance" = $1, "water_sewer" = $2, "property_management" = $3, "cap_ex" = $4, "insurance" = $5, "vacancy" = $6, "updated_at" = $7 WHERE "deals"."id" = $8[0m  [["repairs_maintenance", 10], ["water_sewer", 10], ["property_management", 10], ["cap_ex", 160], ["insurance", "250.0"], ["vacancy", 10], ["updated_at", "2016-07-15 03:12:40.141907"], ["id", 1]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "deals" SET "estimated_repairs" = $1, "arv" = $2, "loan_points" = $3, "updated_at" = $4 WHERE "deals"."id" = $5  [["estimated_repairs", 2000], ["arv", 130000], ["loan_points", 0], ["updated_at", "2016-07-15 03:13:33.091524"], ["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "deals" SET "electricity" = $1, "water_sewer" = $2, "pmi" = $3, "updated_at" = $4 WHERE "deals"."id" = $5[0m  [["electricity", 0], ["water_sewer", 0], ["pmi", "0.0"], ["updated_at", "2016-07-15 03:14:38.226458"], ["id", 1]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "deals" SET "other_expenses" = $1, "updated_at" = $2 WHERE "deals"."id" = $3  [["other_expenses", 0], ["updated_at", "2016-07-15 03:15:37.960443"], ["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[36mDeal Load (1.9ms)[0m  [1mSELECT  "deals".* FROM "deals"  ORDER BY "deals"."id" ASC LIMIT 1[0m
+  [1m[36mDeal Load (1.0ms)[0m  [1mSELECT  "deals".* FROM "deals"  ORDER BY "deals"."id" ASC LIMIT 1[0m
+  [1m[36mDeal Load (0.9ms)[0m  [1mSELECT  "deals".* FROM "deals"  ORDER BY "deals"."id" ASC LIMIT 1[0m
+  [1m[36mDeal Load (1.0ms)[0m  [1mSELECT  "deals".* FROM "deals"  ORDER BY "deals"."id" ASC LIMIT 1[0m
+  [1m[36mDeal Load (0.9ms)[0m  [1mSELECT  "deals".* FROM "deals"  ORDER BY "deals"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "deals" SET "gross_rent" = $1, "updated_at" = $2 WHERE "deals"."id" = $3[0m  [["gross_rent", 2000], ["updated_at", "2016-07-15 03:21:45.378632"], ["id", 1]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mDeal Load (0.8ms)[0m  [1mSELECT  "deals".* FROM "deals"  ORDER BY "deals"."id" ASC LIMIT 1[0m
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateDeals (20160715023150)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (7.7ms)[0m  [1mCREATE TABLE "deals" ("id" serial primary key, "address" character varying, "city" character varying, "state" character varying, "zip" character varying, "purchase_price" integer DEFAULT 0 NOT NULL, "arv" integer DEFAULT 0 NOT NULL, "closing_costs" integer DEFAULT 0 NOT NULL, "estimated_repairs" integer DEFAULT 0 NOT NULL, "down_payment" integer DEFAULT 0 NOT NULL, "interest_rate" decimal(4,2) DEFAULT 0 NOT NULL, "loan_points" integer DEFAULT 0 NOT NULL, "loan_years" integer DEFAULT 0 NOT NULL, "gross_rent" integer DEFAULT 0 NOT NULL, "other_income" integer DEFAULT 0 NOT NULL, "electricity" integer DEFAULT 0 NOT NULL, "water_sewer" integer DEFAULT 0 NOT NULL, "pmi" decimal(10,2) DEFAULT 0 NOT NULL, "insurance" decimal(10,2) DEFAULT 0 NOT NULL, "property_tax" decimal(10,2) DEFAULT 0 NOT NULL, "other_expenses" integer DEFAULT 0 NOT NULL, "vacancy" integer DEFAULT 0 NOT NULL, "repairs_maintenance" integer DEFAULT 0 NOT NULL, "cap_ex" integer DEFAULT 0 NOT NULL, "property_management" integer DEFAULT 0 NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160715023150"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (6.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'deals'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 10:00:26 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (1.3ms)
+Completed 500 Internal Server Error in 396ms (ActiveRecord: 5.2ms)
+
+LoadError (cannot load such file -- coffee_script):
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__4110740456776862207_70196581506480'
+
+
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (58.4ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (76.0ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (22.6ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (46.7ms)
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 10:00:42 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 145ms (Views: 143.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-07-15 10:00:42 -0400
+
+
+Started GET "/assets/deals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-15 10:00:42 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 10:00:42 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 10:00:42 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 10:00:42 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 10:00:42 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 10:02:49 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (69.9ms)
+Completed 500 Internal Server Error in 90ms (ActiveRecord: 2.5ms)
+
+ActionView::Template::Error (undefined method `model_name' for nil:NilClass):
+    1: <h1>New Deal Analysis</h1>
+    2: 
+    3: <%= simple_form_for @deals do |f| %>
+    4: 
+    5: 	<%= f.input :address %>
+    6: 	
+  app/views/deals/new.html.erb:3:in `_app_views_deals_new_html_erb___1799335893734312769_70196597722080'
+
+
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (56.2ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (69.8ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (11.6ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (23.7ms)
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 10:02:54 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 18ms (Views: 16.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-07-15 10:02:54 -0400
+
+
+Started GET "/assets/deals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-15 10:02:54 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 10:02:54 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 10:02:54 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 10:02:54 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 10:02:54 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 10:03:10 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 12ms (Views: 11.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/deals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-15 10:03:10 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-07-15 10:03:10 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 10:03:10 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 10:03:10 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 10:03:10 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 10:03:10 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 10:06:01 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (71.3ms)
+Completed 200 OK in 80ms (Views: 79.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-07-15 10:06:01 -0400
+
+
+Started GET "/assets/deals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-15 10:06:01 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 10:06:01 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 10:06:01 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 10:06:01 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 10:06:01 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 10:12:03 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.8ms)
+Completed 200 OK in 25ms (Views: 24.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/deals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-15 10:12:04 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-07-15 10:12:04 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 10:12:04 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 10:12:04 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 10:12:04 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 10:12:04 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:20:32 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (107.6ms)
+Completed 200 OK in 453ms (Views: 412.7ms | ActiveRecord: 8.5ms)
+
+
+Started GET "/assets/deals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-15 16:20:33 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:20:33 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:20:33 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:20:33 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-07-15 16:20:33 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:20:33 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:24:20 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (69.2ms)
+Completed 200 OK in 4184ms (Views: 4145.3ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/assets/deals.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:24:24 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:24:24 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:24:24 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:24:24 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-07-15 16:24:24 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:24:24 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:24:43 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 39ms (Views: 37.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/deals.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:24:43 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:24:43 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:24:43 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-07-15 16:24:43 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:24:43 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:24:43 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:26:26 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (73.0ms)
+Completed 200 OK in 2571ms (Views: 2526.8ms | ActiveRecord: 8.4ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:26:29 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:26:29 -0400
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:26:29 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:26:29 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:26:29 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:27:00 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (70.9ms)
+Completed 200 OK in 84ms (Views: 83.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:27:00 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:27:00 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:27:00 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:27:00 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:27:00 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:27:43 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.3ms)
+Completed 200 OK in 29ms (Views: 28.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:27:43 -0400
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:27:43 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:27:43 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:27:43 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:27:43 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:28:18 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (70.1ms)
+Completed 200 OK in 84ms (Views: 82.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:28:19 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:28:19 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:28:19 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:28:19 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:28:19 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:28:36 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 31ms (Views: 29.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:28:36 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:28:36 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:28:36 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:28:36 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:28:36 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:28:54 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.7ms)
+Completed 200 OK in 30ms (Views: 29.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:28:55 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:28:55 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:28:55 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:28:55 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:28:55 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:29:21 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (20.1ms)
+Completed 200 OK in 35ms (Views: 34.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:29:21 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:29:21 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:29:21 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:29:21 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:29:21 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:29:45 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 29ms (Views: 28.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:29:45 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:29:45 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:29:45 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:29:45 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:29:45 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:30:39 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 34ms (Views: 32.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:30:39 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:30:39 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:30:39 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:30:39 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:30:39 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:30:54 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (19.1ms)
+Completed 200 OK in 32ms (Views: 31.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:30:54 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:30:54 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:30:54 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:30:54 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:30:54 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:39:28 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (77.2ms)
+Completed 200 OK in 135ms (Views: 134.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:39:28 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:39:28 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:39:28 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:39:28 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:39:28 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:39:51 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 84ms (Views: 83.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:39:51 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:39:51 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:39:51 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:39:51 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:39:51 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:40:00 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.2ms)
+Completed 200 OK in 29ms (Views: 27.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:40:00 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:40:00 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:40:00 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:40:00 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:40:00 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 16:40:21 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.8ms)
+Completed 200 OK in 29ms (Views: 28.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 16:40:22 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 16:40:22 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 16:40:22 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 16:40:22 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 16:40:22 -0400
+
+
+Started GET "/" for ::1 at 2016-07-15 21:24:02 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered vendor/bundle/ruby/2.0.0/gems/railties-4.2.5.1/lib/rails/templates/rails/welcome/index.html.erb (1.1ms)
+Completed 200 OK in 27ms (Views: 12.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:24:05 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (70.1ms)
+Completed 200 OK in 552ms (Views: 494.0ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:24:17 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 34ms (Views: 33.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:24:17 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:24:17 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:24:17 -0400
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 21:24:17 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:24:17 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:24:18 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.9ms)
+Completed 200 OK in 31ms (Views: 29.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 21:24:19 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:24:19 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:24:19 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:24:19 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:24:19 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:24:49 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.1ms)
+Completed 200 OK in 91ms (Views: 90.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 21:24:49 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:24:49 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:24:49 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:24:49 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:24:49 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:24:50 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 33ms (Views: 31.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 21:24:50 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:24:50 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:24:50 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:24:50 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:24:50 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:24:54 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (66.3ms)
+Completed 200 OK in 80ms (Views: 79.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 21:24:54 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:24:54 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:24:54 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:24:54 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:24:54 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:25:06 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.9ms)
+Completed 200 OK in 32ms (Views: 31.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:25:06 -0400
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 21:25:06 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:25:06 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:25:06 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:25:06 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:25:07 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (69.4ms)
+Completed 200 OK in 82ms (Views: 81.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 21:25:07 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:25:07 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:25:07 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:25:07 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:25:07 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:25:10 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.4ms)
+Completed 200 OK in 28ms (Views: 27.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:25:10 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:25:10 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:25:10 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:25:10 -0400
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 21:25:10 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:25:19 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.1ms)
+Completed 200 OK in 29ms (Views: 28.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 21:25:19 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:25:19 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:25:19 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:25:19 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:25:19 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:25:20 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 87ms (Views: 85.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ad4e2f5f218e0f97665a20c786d3e1431cc401130bfc10103e65c40b8312a9b.css?body=1" for ::1 at 2016-07-15 21:25:21 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:25:21 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:25:21 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:25:21 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:25:21 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:27:58 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.1ms)
+Completed 200 OK in 2289ms (Views: 2287.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-8169cdb71d88fb9bcdae294793506c8bb64033697bb5bf18a174803c832b7ff7.css?body=1" for ::1 at 2016-07-15 21:28:01 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:28:01 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:28:01 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:28:01 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:28:01 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:29:03 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 2080ms (Views: 2078.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-d4e295fc577bee045f167999f1af325e406f6f1443e0639e4d46f1ae2a112d1a.css?body=1" for ::1 at 2016-07-15 21:29:05 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:29:05 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:29:05 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:29:05 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:29:05 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:30:48 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.0ms)
+Completed 500 Internal Server Error in 684ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Invalid CSS after "#": expected id name, was " Show labels on..."):
+    2: <html>
+    3: <head>
+    4:   <title>RentalCalculator</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/main.css:2
+  app/assets/stylesheets/application.css.scss:3
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___1403873087436111084_70295504399780'
+
+
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.5ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (92.7ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (15.8ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered vendor/bundle/ruby/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (37.1ms)
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:31:04 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 1937ms (Views: 1936.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:31:06 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:31:06 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:31:06 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:31:06 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:31:06 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:32:50 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.5ms)
+Completed 200 OK in 30ms (Views: 29.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:32:50 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:32:50 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:32:50 -0400
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:32:50 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:32:50 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:33:18 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.3ms)
+Completed 200 OK in 30ms (Views: 29.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:33:18 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:33:18 -0400
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:33:18 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:33:18 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:33:18 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:35:19 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (87.6ms)
+Completed 200 OK in 102ms (Views: 101.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:35:19 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:35:19 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:35:19 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:35:19 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:35:19 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:36:09 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 29ms (Views: 28.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:36:09 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:36:09 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:36:09 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:36:09 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:36:09 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:38:16 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (19.3ms)
+Completed 200 OK in 32ms (Views: 31.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:38:16 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:38:16 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:38:16 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:38:16 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:38:16 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:38:52 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (19.5ms)
+Completed 200 OK in 33ms (Views: 31.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:38:52 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:38:52 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:38:52 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:38:52 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:38:52 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:40:33 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.5ms)
+Completed 200 OK in 31ms (Views: 30.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:40:33 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:40:33 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:40:33 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:40:33 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:40:33 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:45:21 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 98ms (Views: 97.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:45:21 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:45:21 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:45:21 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:45:21 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:45:21 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:45:28 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 31ms (Views: 29.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:45:28 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:45:28 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:45:28 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:45:28 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:45:28 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:45:46 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 30ms (Views: 28.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:45:46 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:45:46 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:45:46 -0400
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:45:46 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:45:46 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:47:07 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (82.3ms)
+Completed 200 OK in 97ms (Views: 96.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eea4f95e1a1bf069c78b604e349b371eddad4ba9ba7e60135a087aa5c18dc39b.css?body=1" for ::1 at 2016-07-15 21:47:07 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:47:07 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:47:07 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:47:07 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:47:07 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:48:11 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.7ms)
+Completed 200 OK in 1932ms (Views: 1931.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-0e3a0c529045d397606f7badcb56a90aec68b567b94f8fb4896aa96f5ebea05a.css?body=1" for ::1 at 2016-07-15 21:48:13 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:48:13 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:48:13 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:48:13 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:48:13 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:48:22 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.2ms)
+Completed 200 OK in 1887ms (Views: 1886.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-e382a9824d9c4baa55d6f5c005648fda5f0a5d4f8514639ed0c5b5aa5e18e122.css?body=1" for ::1 at 2016-07-15 21:48:24 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:48:24 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:48:24 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:48:24 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:48:24 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:48:50 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 1785ms (Views: 1784.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-b3d7c5552851e6c0a43c07eb10caf1844af23fefffe514df29813b3a19d47667.css?body=1" for ::1 at 2016-07-15 21:48:52 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:48:52 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:48:52 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:48:52 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:48:52 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:49:03 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 1792ms (Views: 1790.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eef291a22debcc0257191b595276e339fea95e1bcb55fc3471261b5bf544c7a4.css?body=1" for ::1 at 2016-07-15 21:49:05 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:49:05 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:49:05 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:49:05 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:49:05 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:49:09 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 28ms (Views: 27.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eef291a22debcc0257191b595276e339fea95e1bcb55fc3471261b5bf544c7a4.css?body=1" for ::1 at 2016-07-15 21:49:09 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:49:09 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:49:09 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:49:09 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:49:09 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:49:45 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 33ms (Views: 31.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:49:45 -0400
+
+
+Started GET "/assets/application.self-eef291a22debcc0257191b595276e339fea95e1bcb55fc3471261b5bf544c7a4.css?body=1" for ::1 at 2016-07-15 21:49:45 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:49:45 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:49:45 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:49:45 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:49:46 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 32ms (Views: 30.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eef291a22debcc0257191b595276e339fea95e1bcb55fc3471261b5bf544c7a4.css?body=1" for ::1 at 2016-07-15 21:49:46 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:49:46 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:49:46 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:49:46 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:49:46 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:51:35 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.8ms)
+Completed 200 OK in 32ms (Views: 30.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-eef291a22debcc0257191b595276e339fea95e1bcb55fc3471261b5bf544c7a4.css?body=1" for ::1 at 2016-07-15 21:51:35 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:51:35 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:51:35 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:51:35 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:51:35 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:51:46 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 30ms (Views: 29.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-b3d7c5552851e6c0a43c07eb10caf1844af23fefffe514df29813b3a19d47667.css?body=1" for ::1 at 2016-07-15 21:51:46 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:51:46 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:51:46 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:51:46 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:51:46 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:51:56 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.5ms)
+Completed 200 OK in 1798ms (Views: 1797.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:51:58 -0400
+
+
+Started GET "/assets/application.self-4cfd55c01a0c6ea70992cb20335758e1246559e00e4278d9c9c4d04d1251fe9e.css?body=1" for ::1 at 2016-07-15 21:51:58 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:51:58 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:51:58 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:51:58 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:52:01 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (78.7ms)
+Completed 200 OK in 1695ms (Views: 1693.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-0997a377a3bdd54540c2a526a71e625f83e0578b64b563d99f0d73558e6b10ff.css?body=1" for ::1 at 2016-07-15 21:52:03 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:52:03 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:52:03 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:52:03 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:52:03 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:52:46 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 1825ms (Views: 1823.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-8117924ef32630a6044b0e0501938cf60be71a9dced5f59a44737fc1fcb55a71.css?body=1" for ::1 at 2016-07-15 21:52:48 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:52:48 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:52:48 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:52:48 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:52:48 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:53:03 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 34ms (Views: 33.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-8117924ef32630a6044b0e0501938cf60be71a9dced5f59a44737fc1fcb55a71.css?body=1" for ::1 at 2016-07-15 21:53:03 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:53:03 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:53:03 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:53:03 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:53:03 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:53:10 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.5ms)
+Completed 200 OK in 30ms (Views: 29.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:53:10 -0400
+
+
+Started GET "/assets/application.self-8117924ef32630a6044b0e0501938cf60be71a9dced5f59a44737fc1fcb55a71.css?body=1" for ::1 at 2016-07-15 21:53:10 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:53:10 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:53:10 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:53:10 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:53:11 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.6ms)
+Completed 200 OK in 28ms (Views: 27.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-8117924ef32630a6044b0e0501938cf60be71a9dced5f59a44737fc1fcb55a71.css?body=1" for ::1 at 2016-07-15 21:53:11 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:53:11 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:53:11 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:53:11 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:53:11 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:53:33 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (96.1ms)
+Completed 200 OK in 1783ms (Views: 1782.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-d3cc28ec0159fe7348618e03db281bf67ffa660752b89aca8e7759a4af4c159e.css?body=1" for ::1 at 2016-07-15 21:53:35 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:53:35 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:53:35 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:53:35 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:53:35 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:54:02 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 33ms (Views: 32.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-8117924ef32630a6044b0e0501938cf60be71a9dced5f59a44737fc1fcb55a71.css?body=1" for ::1 at 2016-07-15 21:54:02 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:54:02 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:54:02 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:54:02 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:54:02 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:54:17 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 1640ms (Views: 1639.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-543f4d10279ac399dc08e0c5fd0b55f104dac9e0b9b94e9a918e58b4e4808869.css?body=1" for ::1 at 2016-07-15 21:54:19 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:54:19 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:54:19 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:54:19 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:54:19 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:55:20 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.7ms)
+Completed 200 OK in 1657ms (Views: 1656.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-7591af44c6c0919212b96bff97ad3e27d5b51c7c3103ed523fd4c50af493a978.css?body=1" for ::1 at 2016-07-15 21:55:22 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:55:22 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:55:22 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:55:22 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:55:22 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:55:27 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 1613ms (Views: 1611.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-44cd3a1269543d37bccf11f924c1bf70a04316a6f464aa44e22690de12cf59d4.css?body=1" for ::1 at 2016-07-15 21:55:29 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:55:29 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:55:29 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:55:29 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:55:29 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:55:48 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (84.2ms)
+Completed 200 OK in 1593ms (Views: 1592.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-343b2ab79aa8119e46a4f50af33c23c75c2b73442c70d166910209fb236b7a28.css?body=1" for ::1 at 2016-07-15 21:55:49 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:55:49 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:55:49 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:55:49 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:55:49 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:57:37 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (20.7ms)
+Completed 200 OK in 35ms (Views: 34.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-343b2ab79aa8119e46a4f50af33c23c75c2b73442c70d166910209fb236b7a28.css?body=1" for ::1 at 2016-07-15 21:57:37 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:57:37 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:57:37 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:57:37 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:57:37 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:58:28 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.1ms)
+Completed 200 OK in 30ms (Views: 29.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-343b2ab79aa8119e46a4f50af33c23c75c2b73442c70d166910209fb236b7a28.css?body=1" for ::1 at 2016-07-15 21:58:28 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:58:28 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:58:28 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:58:28 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:58:28 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 21:59:28 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.3ms)
+Completed 200 OK in 31ms (Views: 30.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-343b2ab79aa8119e46a4f50af33c23c75c2b73442c70d166910209fb236b7a28.css?body=1" for ::1 at 2016-07-15 21:59:28 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 21:59:28 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 21:59:28 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 21:59:28 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 21:59:28 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:00:05 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.9ms)
+Completed 200 OK in 1641ms (Views: 1640.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-42dceb0c14e210ede6a6a08d8a2cf20b2a6f34ce812a87b634ac099ed79f693e.css?body=1" for ::1 at 2016-07-15 22:00:07 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:00:07 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:00:07 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:00:07 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:00:07 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:00:57 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (20.5ms)
+Completed 200 OK in 1546ms (Views: 1545.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-1800472505a9afb815033ee9285641bbb6748b439611f6bb66df988c7ec3933c.css?body=1" for ::1 at 2016-07-15 22:00:59 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:00:59 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:00:59 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:00:59 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:00:59 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:01:39 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (20.6ms)
+Completed 200 OK in 1513ms (Views: 1512.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-e15c8a1d0c2ed68501a538ce1e04a17470955311ef678b11d69e5a980e4f5376.css?body=1" for ::1 at 2016-07-15 22:01:40 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:01:40 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:01:40 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:01:40 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:01:40 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:01:45 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.4ms)
+Completed 200 OK in 30ms (Views: 29.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-e15c8a1d0c2ed68501a538ce1e04a17470955311ef678b11d69e5a980e4f5376.css?body=1" for ::1 at 2016-07-15 22:01:45 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:01:45 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:01:45 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:01:45 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:01:45 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:02:17 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 1629ms (Views: 1628.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-c33cdd0839b8e230adcd900d555a5405a1b5e7a98bd0c00a41c5db412db695c1.css?body=1" for ::1 at 2016-07-15 22:02:19 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:02:19 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:02:19 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:02:19 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:02:19 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:02:53 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.3ms)
+Completed 200 OK in 30ms (Views: 29.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-c33cdd0839b8e230adcd900d555a5405a1b5e7a98bd0c00a41c5db412db695c1.css?body=1" for ::1 at 2016-07-15 22:02:53 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:02:53 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:02:53 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:02:53 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:02:53 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:03:34 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.1ms)
+Completed 200 OK in 30ms (Views: 29.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-c33cdd0839b8e230adcd900d555a5405a1b5e7a98bd0c00a41c5db412db695c1.css?body=1" for ::1 at 2016-07-15 22:03:34 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:03:34 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:03:34 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:03:34 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:03:34 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:03:53 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (96.4ms)
+Completed 200 OK in 113ms (Views: 112.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-c33cdd0839b8e230adcd900d555a5405a1b5e7a98bd0c00a41c5db412db695c1.css?body=1" for ::1 at 2016-07-15 22:03:54 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:03:54 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:03:54 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:03:54 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:03:54 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:03:56 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 29ms (Views: 28.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-c33cdd0839b8e230adcd900d555a5405a1b5e7a98bd0c00a41c5db412db695c1.css?body=1" for ::1 at 2016-07-15 22:03:56 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:03:56 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:03:56 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:03:56 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:03:56 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:04:00 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.2ms)
+Completed 200 OK in 30ms (Views: 29.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-c33cdd0839b8e230adcd900d555a5405a1b5e7a98bd0c00a41c5db412db695c1.css?body=1" for ::1 at 2016-07-15 22:04:00 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:04:00 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:04:00 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:04:00 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:04:00 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:04:09 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (19.5ms)
+Completed 200 OK in 34ms (Views: 33.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-c33cdd0839b8e230adcd900d555a5405a1b5e7a98bd0c00a41c5db412db695c1.css?body=1" for ::1 at 2016-07-15 22:04:09 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:04:09 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:04:09 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:04:09 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:04:09 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:04:49 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (14.7ms)
+Completed 200 OK in 1564ms (Views: 1563.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-ba52d0c1b4651b08ffe4ac12f4484dd50a93543875c0cc4a2e265025e198a35b.css?body=1" for ::1 at 2016-07-15 22:04:51 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:04:51 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:04:51 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:04:51 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:04:51 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:04:59 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 1556ms (Views: 1555.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-98580f3116776869382dab102abaf5135314107aedcb177e8d5c3699861a1e7e.css?body=1" for ::1 at 2016-07-15 22:05:01 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:05:01 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:05:01 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:05:01 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:05:01 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:05:13 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 1654ms (Views: 1652.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:05:15 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:05:15 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:05:15 -0400
+
+
+Started GET "/assets/application.self-ed57ebd62646a01f717d8e752c59c6d24d1c91371bf0f24954c013a0640ad235.css?body=1" for ::1 at 2016-07-15 22:05:15 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:05:15 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:05:19 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 1626ms (Views: 1624.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-842786041ad15e49d9873330feacf9a489e3822474a903a2d1982ac9abc30ac2.css?body=1" for ::1 at 2016-07-15 22:05:21 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:05:21 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:05:21 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:05:21 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:05:21 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:06:05 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (17.7ms)
+Completed 200 OK in 1560ms (Views: 1559.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-6273fc09372afd1a56d19b3b1d62f474c0d66f4cba754f03622596e846f8048c.css?body=1" for ::1 at 2016-07-15 22:06:07 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:06:07 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:06:07 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:06:07 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:06:07 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:06:15 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (20.7ms)
+Completed 200 OK in 1615ms (Views: 1614.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-456ecf3d15a1dcc89b3c0cb2e055f7772ca27de498523b387c37b8057dd39893.css?body=1" for ::1 at 2016-07-15 22:06:17 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:06:17 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:06:17 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:06:17 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:06:17 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:06:30 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (78.5ms)
+Completed 200 OK in 1535ms (Views: 1534.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-f48a19eef4bc0b564aaff2ef43220ec3061a22e64236b2c3c3da15cf32824ccc.css?body=1" for ::1 at 2016-07-15 22:06:32 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:06:32 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:06:32 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:06:32 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:06:32 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:07:39 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 1494ms (Views: 1493.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-cea56b25c0310f11bb5537ed04640479d4d67f9dd46eaf039722b16396eb4b0c.css?body=1" for ::1 at 2016-07-15 22:07:41 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:07:41 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:07:41 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:07:41 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:07:41 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:07:45 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.7ms)
+Completed 200 OK in 1524ms (Views: 1523.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-9a6739c332cbbc2d905d36c9e48626c280ba990a60dca1b4754116ba45d43cb4.css?body=1" for ::1 at 2016-07-15 22:07:46 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:07:46 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:07:46 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:07:46 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:07:46 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:08:07 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 1470ms (Views: 1469.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-9098cdd91f25b40d319fcfc8d3904cfac860ab4760d0a39c55b0946698cead93.css?body=1" for ::1 at 2016-07-15 22:08:09 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:08:09 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:08:09 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:08:09 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:08:09 -0400
+
+
+Started GET "/deals" for ::1 at 2016-07-15 22:09:35 -0400
+Processing by DealsController#index as HTML
+  Rendered deals/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 16ms (Views: 15.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/deals" for ::1 at 2016-07-15 22:09:48 -0400
+Processing by DealsController#index as HTML
+  Rendered deals/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 16ms (Views: 15.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-9098cdd91f25b40d319fcfc8d3904cfac860ab4760d0a39c55b0946698cead93.css?body=1" for ::1 at 2016-07-15 22:09:48 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-15 22:09:48 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-15 22:09:48 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-15 22:09:48 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-15 22:09:48 -0400
+
+
+Started GET "/deals/new" for ::1 at 2016-07-15 22:09:51 -0400
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (18.2ms)
+Completed 200 OK in 33ms (Views: 31.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/deals/new" for ::1 at 2016-07-16 10:41:06 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DealsController#new as HTML
+  Rendered deals/new.html.erb within layouts/application (98.0ms)
+Completed 200 OK in 592ms (Views: 548.7ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/assets/application.self-9098cdd91f25b40d319fcfc8d3904cfac860ab4760d0a39c55b0946698cead93.css?body=1" for ::1 at 2016-07-16 10:41:07 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-16 10:41:07 -0400
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-16 10:41:07 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-16 10:41:07 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-16 10:41:07 -0400
