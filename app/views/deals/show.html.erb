@@ -1,4 +1,9 @@
-<h1>Deal</h1>
+<div class="header">
+	<div class="row">
+		<h1>Deal</h1>
+		<%= link_to "Edit Deal", edit_deal_path(@deal), class:'btn btn-primary btn-lg' %>
+	</div>
+</div>
 <div class="row">
 	<label>Purchase Price:</label> <%= number_to_currency(@deal.purchase_price) %>
 </div>
