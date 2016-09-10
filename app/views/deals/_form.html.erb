@@ -1,0 +1,124 @@
+<%= simple_form_for @deal do |f| %>
+
+	<div class="property">
+		<h3>Property Information</h3>
+		<div class="row">
+			<div class="col-lg-12 form-group">
+				<%= f.input :address, label: "Address", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-4 form-group">
+				<%= f.input :city, input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-4 form-group">
+				<%= f.input :state, collection: ApplicationHelper::STATES, input_html: {class: 'form-control', id: 'states'} %>
+			</div>
+			<div class="col-lg-4 form-group">
+				<%= f.input :zip, label: "ZIP Code", input_html: {class: 'form-control'} %>
+			</div>
+		</div>
+		<hr>
+	</div>
+
+	<div class="financing">
+		<h3>Financing Information</h3>
+		<div class="row">
+			<div class="col-lg-6 form-group">
+				<%= f.input :purchase_price, label: "Purchase Price", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 form-group">
+				<%= f.input :arv, label: "After Repair Value (ARV)", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 form-group">
+				<%= f.input :closing_costs, label: "Closing Costs", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 form-group">
+				<%= f.input :estimated_repairs, label: "Estimated Repair Cost", input_html: {class: 'form-control'} %>
+			</div>
+		</div>
+		<hr>
+	</div>
+
+	<div class="Loan">
+		<h3>Loan Information</h3>
+		<div class="row">
+			<div class="col-lg-6 form-group">
+				<%= f.input :down_payment, label: "Down Payment", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 form-group">
+				<%= f.input :interest_rate, label: "Interest Rate (%)", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 form-group">
+				<%= f.input :loan_points, label: "Loan Points", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 form-group">
+				<%= f.input :loan_years, label: "Amortized Over How Many Years?", input_html: {class: 'form-control'} %>
+			</div>
+		</div>
+		<hr>
+	</div>
+
+	<div class="income">
+		<h3>Property Income</h3>
+		<div class="row">
+			<div class="col-lg-6 form-group">
+				<%= f.input :gross_rent, label: "Gross Rent", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 form-group">
+				<%= f.input :other_income, label: "Other Income", input_html: {class: 'form-control'} %>
+			</div>
+		</div>
+		<hr>
+	</div>
+
+	<div class="expenses">
+		<h3>Fixed Expenses</h3>
+		<div class="row">
+			<div class="col-lg-4 col-md-6 form-group">
+				<%= f.input :electricity, input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-4 col-md-6 form-group">
+				<%= f.input :water_sewer, input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-4 col-md-6 form-group">
+				<%= f.input :pmi, input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-4 col-md-6 form-group">
+				<%= f.input :insurance, input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-4 col-md-6 form-group">
+				<%= f.input :property_tax, input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-4 col-md-6 form-group">
+				<%= f.input :other_expenses, input_html: {class: 'form-control'} %>
+			</div>
+		</div>
+		<hr>
+		<h3>Variable Expenses</h3>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 form-group">
+				<%= f.input :vacancy, label: "Vacancy (%)", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 col-md-6 form-group">
+				<%= f.input :repairs_maintenance, label: "Repairs & Maintenance (%)", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 col-md-6 form-group">
+				<%= f.input :cap_ex, label: "CapEx (%)", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 col-md-6 form-group">
+				<%= f.input :property_management, label: "Property Management (%)", input_html: {class: 'form-control'} %>
+			</div>
+		</div>
+		<hr>
+	</div>
+		
+	<div class="row">
+		<div class="submit">
+			<%= f.submit 'Analyze', class: 'btn btn-primary btn-lg btn-submit'%>
+		</div>
+	</div>
+
+<% end %>
+
+<script type="text/javascript">
+	
+</script>

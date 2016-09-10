@@ -32,9 +32,15 @@ class Deal < ActiveRecord::Base
 		operating_expenses + mortgage_payment_monthly
 	end
 
+	# calculate operating expenses
 	def operating_expenses
-		electricity + water_sewer + pmi + insurance.round(2) + property_tax + other_expenses + vacancy_dollars + repairs_dollars + property_management_dollars
+		electricity + water_sewer + pmi + insurance.round(2) + property_tax + other_expenses + vacancy_dollars + + cap_ex_dollars + repairs_dollars + property_management_dollars
 	end
+
+	# calculate mortgage expenses
+	def mortgage_expenses
+		mortgage_payment_monthly + pmi
+	end	
 
 	# calculate dollar value of vacancy from percent
 	def vacancy_dollars
@@ -46,6 +52,11 @@ class Deal < ActiveRecord::Base
 		(repairs_maintenance / 100.00) * total_income
 	end
 
+	# calculate dollar value of cap ex
+	def cap_ex_dollars
+		(cap_ex / 100.00) * total_income
+	end
+
 	# calculate dollar value of property management from percent
 	def property_management_dollars
 		(property_management / 100.00) * total_income
@@ -53,7 +64,7 @@ class Deal < ActiveRecord::Base
 
 	# calculate monthly cash flow
 	def cash_flow
-		monthly_income - monthly_expenses
+		total_income - total_expenses
 	end
 
 	# calculate net operating income
@@ -63,12 +74,22 @@ class Deal < ActiveRecord::Base
 
 	# total cash needed for deal
 	def total_cash_needed
-		purchase_price + closing_costs + estimated_repairs + (points * loan_amount)
+		down_payment + closing_costs + estimated_repairs + (loan_points * loan_amount)
 	end
 
-	# predicted cap rate based on ARV
-	def cap_rate
-		noi / arv
+	# predicted cap rate based on ARV (Pro Forma Cap)
+	def pro_forma_cap_rate
+		(noi / arv * 100).round(2)
+	end
+
+	# calculate cap rate for purchase 
+	def purchase_cap_rate
+		(noi / purchase_price * 100).round(2)
+	end
+
+	# calculate cash on cash ROI
+	def cash_on_cash_roi
+		(cash_flow * 12 / total_cash_needed * 100).round(2)
 	end
 
 end

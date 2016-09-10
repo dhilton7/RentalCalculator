@@ -1,1 +1,50 @@
 <h1>Deal</h1>
+<div class="row">
+	<label>Purchase Price:</label> <%= number_to_currency(@deal.purchase_price) %>
+</div>
+
+<div class="row">
+	<label>Monthly Income:</label> <%= number_to_currency(@deal.total_income) %>
+</div>
+
+<div class="row">
+	<label>Monthly Expenses:</label> <%= number_to_currency(@deal.total_expenses) %>
+</div>
+
+<div class="row">
+	<label>Monthly Cashflow:</label> <%= number_to_currency(@deal.cash_flow) %>
+</div>
+
+<div class="row">
+	<label>Pro forma Cap Rate:</label> <%= "#{@deal.pro_forma_cap_rate}%"%>
+</div>
+
+<div class="row">
+	<label>NOI:</label> <%= number_to_currency(@deal.noi) %>
+</div>
+
+<div class="row">
+	<label>Total Cash Needed:</label> <%= number_to_currency(@deal.total_cash_needed) %>
+</div>
+
+<div class="row">
+	<label>Cash on Cash ROI:</label> <%= "#{@deal.cash_on_cash_roi}%" %>
+</div>
+
+<div class="row">
+	<label>Purchase Cap Rate:</label> <%= "#{@deal.purchase_cap_rate}%" %>
+</div>
+
+<div class="row">
+	<label>Total Operating Expenses:</label> <%= number_to_currency(@deal.operating_expenses) %>
+</div>
+
+<div class="row">
+	<label>Mortgage Expenses:</label> <%= number_to_currency(@deal.mortgage_expenses) %>
+</div>
+
+<div class="financing">
+	<div class="row">
+	</div>
+</div>
+
