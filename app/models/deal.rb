@@ -92,4 +92,9 @@ class Deal < ActiveRecord::Base
 		(cash_flow * 12 / total_cash_needed * 100).round(2)
 	end
 
+	# return full address string
+	def address_string
+		"#{address} #{city}, #{state} #{zip}"
+	end
+
 end

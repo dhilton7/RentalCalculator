@@ -4,6 +4,11 @@
 		<%= link_to "Edit Deal", edit_deal_path(@deal), class:'btn btn-primary btn-lg' %>
 	</div>
 </div>
+
+<div class="row">
+	<label>Address:</label> <%= @deal.address_string %>
+</div>
+
 <div class="row">
 	<label>Purchase Price:</label> <%= number_to_currency(@deal.purchase_price) %>
 </div>
@@ -46,6 +51,10 @@
 
 <div class="row">
 	<label>Mortgage Expenses:</label> <%= number_to_currency(@deal.mortgage_expenses) %>
+</div>
+
+<div class="row">
+	<label>Neighborhood Scout:</label> <%= link_to(@deal.neighborhood_scout, @deal.neighborhood_scout) %>
 </div>
 
 <div class="financing">

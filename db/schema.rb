@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160715023150) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.string   "neighborhood_scout"
     t.integer  "purchase_price",                               default: 0,   null: false
     t.integer  "arv",                                          default: 0,   null: false
     t.integer  "closing_costs",                                default: 0,   null: false

@@ -1,6 +1,23 @@
-<h1>Your deals</h1>
-<%= link_to "Analyze New Deal", new_deal_path, class: 'btn btn-primary btn-lg' %>
+<div class="header">
+	<h1>Your deals</h1>
+	<%= link_to "Analyze New Deal", new_deal_path, class: 'btn btn-primary btn-lg' %>
+</div>
 
 <table>
-
+<thead>
+	<th>Address</th>
+	<th>Purchase Price</th>
+	<th>Cap Rate</th>
+	<th>Actions</th>
+</thead>
+<tbody>
+	<% @deals.each do |deal| %>
+	<tr>
+		<td><%= link_to deal.address_string, deal_path(deal) %></td>
+		<td><%= deal.purchase_price %></td>
+		<td><%= deal.purchase_cap_rate %></td>
+		<td><%= link_to "Edit", edit_deal_path(deal) %> | <%= link_to "NH Scout", deal.neighborhood_scout %></td>
+	</tr>
+	<% end %>
+</tbody>
 </table>
