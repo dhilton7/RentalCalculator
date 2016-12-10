@@ -5,7 +5,7 @@ class CreateDeals < ActiveRecord::Migration
     	t.string :city
     	t.string :state
     	t.string :zip
-      t.string :neighborhood_scout
+        t.string :neighborhood_scout
     	t.integer :purchase_price, null: false, default: 0
     	t.integer :arv, null: false, default: 0
     	t.integer :closing_costs, null: false, default: 0
@@ -21,7 +21,7 @@ class CreateDeals < ActiveRecord::Migration
     	t.decimal :pmi, precision: 10, scale: 2, null: false, default: 0
     	t.decimal :insurance, precision: 10, scale: 2, null: false, default: 0
     	t.decimal :property_tax, precision: 10, scale: 2, null: false, default: 0
-    	t.integer	:other_expenses, null: false, default: 0
+    	t.integer :other_expenses, null: false, default: 0
     	t.integer :vacancy, null: false, default: 0
     	t.integer :repairs_maintenance, null: false, default: 0
     	t.integer :cap_ex, null: false, default: 0

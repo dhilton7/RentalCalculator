@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715023150) do
+ActiveRecord::Schema.define(version: 20161208034021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,28 +22,60 @@ ActiveRecord::Schema.define(version: 20160715023150) do
     t.string   "state"
     t.string   "zip"
     t.string   "neighborhood_scout"
-    t.integer  "purchase_price",                               default: 0,   null: false
-    t.integer  "arv",                                          default: 0,   null: false
-    t.integer  "closing_costs",                                default: 0,   null: false
-    t.integer  "estimated_repairs",                            default: 0,   null: false
-    t.integer  "down_payment",                                 default: 0,   null: false
-    t.decimal  "interest_rate",       precision: 4,  scale: 2, default: 0.0, null: false
-    t.integer  "loan_points",                                  default: 0,   null: false
-    t.integer  "loan_years",                                   default: 0,   null: false
-    t.integer  "gross_rent",                                   default: 0,   null: false
-    t.integer  "other_income",                                 default: 0,   null: false
-    t.integer  "electricity",                                  default: 0,   null: false
-    t.integer  "water_sewer",                                  default: 0,   null: false
-    t.decimal  "pmi",                 precision: 10, scale: 2, default: 0.0, null: false
-    t.decimal  "insurance",           precision: 10, scale: 2, default: 0.0, null: false
-    t.decimal  "property_tax",        precision: 10, scale: 2, default: 0.0, null: false
-    t.integer  "other_expenses",                               default: 0,   null: false
-    t.integer  "vacancy",                                      default: 0,   null: false
-    t.integer  "repairs_maintenance",                          default: 0,   null: false
-    t.integer  "cap_ex",                                       default: 0,   null: false
-    t.integer  "property_management",                          default: 0,   null: false
-    t.datetime "created_at",                                                 null: false
-    t.datetime "updated_at",                                                 null: false
+    t.integer  "purchase_price",                               default: 0,          null: false
+    t.integer  "arv",                                          default: 0,          null: false
+    t.integer  "closing_costs",                                default: 0,          null: false
+    t.integer  "estimated_repairs",                            default: 0,          null: false
+    t.integer  "down_payment",                                 default: 0,          null: false
+    t.decimal  "interest_rate",       precision: 4,  scale: 2, default: 0.0,        null: false
+    t.integer  "loan_points",                                  default: 0,          null: false
+    t.integer  "loan_years",                                   default: 0,          null: false
+    t.integer  "gross_rent",                                   default: 0,          null: false
+    t.integer  "other_income",                                 default: 0,          null: false
+    t.integer  "electricity",                                  default: 0,          null: false
+    t.integer  "water_sewer",                                  default: 0,          null: false
+    t.decimal  "pmi",                 precision: 10, scale: 2, default: 0.0,        null: false
+    t.decimal  "insurance",           precision: 10, scale: 2, default: 0.0,        null: false
+    t.decimal  "property_tax",        precision: 10, scale: 2, default: 0.0,        null: false
+    t.integer  "other_expenses",                               default: 0,          null: false
+    t.integer  "vacancy",                                      default: 0,          null: false
+    t.integer  "repairs_maintenance",                          default: 0,          null: false
+    t.integer  "cap_ex",                                       default: 0,          null: false
+    t.integer  "property_management",                          default: 0,          null: false
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
+    t.integer  "list_price",                                   default: 0,          null: false
+    t.integer  "sold_price",                                   default: 0,          null: false
+    t.string   "status",                                       default: "prospect", null: false
   end
+
+  create_table "financial_items", force: :cascade do |t|
+    t.string   "name",                              null: false
+    t.integer  "amount",            default: 0,     null: false
+    t.boolean  "income",            default: false, null: false
+    t.integer  "monthly_report_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "financial_items", ["monthly_report_id"], name: "index_financial_items_on_monthly_report_id", using: :btree
+
+  create_table "financial_reports", force: :cascade do |t|
+    t.integer  "deal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "financial_reports", ["deal_id"], name: "index_financial_reports_on_deal_id", using: :btree
+
+  create_table "monthly_reports", force: :cascade do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "deal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "monthly_reports", ["deal_id"], name: "index_monthly_reports_on_deal_id", using: :btree
 
 end

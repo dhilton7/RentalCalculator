@@ -1,5 +1,16 @@
 class Deal < ActiveRecord::Base
 
+	# Active Record relations
+
+	has_many :monthly_reports
+
+	# Scopes
+
+	# Constants
+	STATUSES = ['prospect', 'closing', 'active', 'sold']
+
+	# Model Functions
+
 	# calculate the monthly P&I
 	def mortgage_payment_monthly
 		c = monthly_interest_rate
@@ -90,6 +101,11 @@ class Deal < ActiveRecord::Base
 	# calculate cash on cash ROI
 	def cash_on_cash_roi
 		(cash_flow * 12 / total_cash_needed * 100).round(2)
+	end
+
+	# calculate Property Tax (P) & Insurance (i) per month
+	def p_i
+		insurance + property_tax
 	end
 
 	# return full address string

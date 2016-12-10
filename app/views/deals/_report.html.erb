@@ -1,0 +1,29 @@
+<div class="row">
+	<%= link_to "New Monthly Report", new_deal_monthly_report_path(deal) %>
+</div>
+
+<div class="row">
+	<table class="table">
+		<thead>
+		<tr>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Income</th>
+			<th>Expenses</th>
+			<th>Cash Flow</th>
+		</tr>
+		</thead>
+		<% @deal.monthly_reports.each do |report| %>
+			<tr>
+				<td><%= report.created_at.beginning_of_month.strftime("%m/%d/%Y") %></td>
+				<td><%= report.created_at.end_of_month.strftime("%m/%d/%Y") %></td>
+				<td><%= number_to_currency(report.total_income) %></td>
+				<td><%= number_to_currency(report.total_expenses) %></td>
+				<td><%= number_to_currency(report.cash_flow) %></td>
+			</tr>
+		<% end %>
+		<tbody>
+			
+		</tbody>
+	</table>
+</div>

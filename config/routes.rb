@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :deals
+  resources :deals do
+    put :activate, on: :member
+    resources :monthly_reports
+  end
   root 'deals#index'
 
   # Example of regular route:

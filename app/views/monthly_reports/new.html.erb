@@ -1,0 +1,9 @@
+<%= simple_form_for([@deal, @report]) do |f| %>
+	
+	<%= f.simple_fields_for :financial_items do |i| %>
+		<%= i.input :name %>
+		<%= i.input :amount %>
+	<% end %>
+
+	<%= f.submit %>
+<% end %>

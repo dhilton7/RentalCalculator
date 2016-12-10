@@ -1,6 +1,7 @@
 class DealsController < ApplicationController
 
-	before_action :set_deal, only: [:show, :edit, :update, :destroy]
+	before_action :set_deal, only: [:show, :edit, :update, :destroy, :activate]
+
 
 	def new
 		@deal = Deal.new
@@ -19,7 +20,7 @@ class DealsController < ApplicationController
 	end
 
 	def index
-		@deals = Deal.all
+		@deals = Deal.all.order('created_at desc')
 	end
 
 	def edit
@@ -38,6 +39,11 @@ class DealsController < ApplicationController
 		redirect_to deals_path, notice: "Deal was successfully deleted."
 	end
 
+	def activate
+		@deal.update_attribute(:status, Deal::STATUSES[2])
+		redirect_to deal_path(@deal), notice: "Deal was updated to active"
+	end
+
 	private
 
 	def set_deal
@@ -45,6 +51,6 @@ class DealsController < ApplicationController
 	end
 
 	def deal_params
-		params.require(:deal).permit(:address, :city, :state, :zip, :neighborhood_scout, :purchase_price, :arv, :closing_costs, :estimated_repairs, :down_payment, :interest_rate, :loan_points, :loan_years, :gross_rent, :other_income, :electricity, :water_sewer, :pmi, :insurance, :property_tax, :other_expenses, :vacancy, :repairs_maintenance, :cap_ex, :property_management)
+		params.require(:deal).permit(:address, :city, :state, :zip, :neighborhood_scout, :purchase_price, :list_price, :arv, :closing_costs, :estimated_repairs, :down_payment, :interest_rate, :loan_points, :loan_years, :gross_rent, :other_income, :electricity, :water_sewer, :pmi, :insurance, :property_tax, :other_expenses, :vacancy, :repairs_maintenance, :cap_ex, :property_management)
 	end
 end

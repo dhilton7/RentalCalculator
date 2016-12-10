@@ -1,64 +1,17 @@
 <div class="header">
 	<div class="row">
-		<h1>Deal</h1>
-		<%= link_to "Edit Deal", edit_deal_path(@deal), class:'btn btn-primary btn-lg' %>
+		<h1><%= @deal.address_string %></h1>
+		<%= link_to "Edit Deal", edit_deal_path(@deal), class: 'btn btn-primary btn-lg' %>
+		<%= link_to "My Deals", deals_path, class: 'btn btn-default btn-lg' %>
+		<% if @deal.status != Deal::STATUSES[2] %>
+			<%= link_to "Make Active", activate_deal_path(@deal), method: :put, class: 'btn btn-default btn-lg' %>
+		<% end %>
 	</div>
 </div>
 
-<div class="row">
-	<label>Address:</label> <%= @deal.address_string %>
-</div>
-
-<div class="row">
-	<label>Purchase Price:</label> <%= number_to_currency(@deal.purchase_price) %>
-</div>
-
-<div class="row">
-	<label>Monthly Income:</label> <%= number_to_currency(@deal.total_income) %>
-</div>
-
-<div class="row">
-	<label>Monthly Expenses:</label> <%= number_to_currency(@deal.total_expenses) %>
-</div>
-
-<div class="row">
-	<label>Monthly Cashflow:</label> <%= number_to_currency(@deal.cash_flow) %>
-</div>
-
-<div class="row">
-	<label>Pro forma Cap Rate:</label> <%= "#{@deal.pro_forma_cap_rate}%"%>
-</div>
-
-<div class="row">
-	<label>NOI:</label> <%= number_to_currency(@deal.noi) %>
-</div>
-
-<div class="row">
-	<label>Total Cash Needed:</label> <%= number_to_currency(@deal.total_cash_needed) %>
-</div>
-
-<div class="row">
-	<label>Cash on Cash ROI:</label> <%= "#{@deal.cash_on_cash_roi}%" %>
-</div>
-
-<div class="row">
-	<label>Purchase Cap Rate:</label> <%= "#{@deal.purchase_cap_rate}%" %>
-</div>
-
-<div class="row">
-	<label>Total Operating Expenses:</label> <%= number_to_currency(@deal.operating_expenses) %>
-</div>
-
-<div class="row">
-	<label>Mortgage Expenses:</label> <%= number_to_currency(@deal.mortgage_expenses) %>
-</div>
-
-<div class="row">
-	<label>Neighborhood Scout:</label> <%= link_to(@deal.neighborhood_scout, @deal.neighborhood_scout) %>
-</div>
-
-<div class="financing">
-	<div class="row">
-	</div>
-</div>
+<% if @deal.status == Deal::STATUSES[2] %>
+	<%= render partial: 'report', locals: {deal: @deal} %>
+<% else %>
+	<%= render partial: 'analysis', locals: {deal: @deal} %>
+<% end %>
 
