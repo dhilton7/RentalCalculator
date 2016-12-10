@@ -1,8 +1,7 @@
-
 /* Container */
 .container {
 	background-color: rgb(235, 235, 240);
-	padding: 20px 40px 40px 40px;
+	padding: 70px 40px 40px 40px;
 }
 
 .header h1 {
@@ -42,4 +41,24 @@
 
 .row {
 	padding-top: 25px;
+}
+
+/* Navigation */
+
+.navbar a {
+	color: #000 !important;
+}
+
+.navbar a:hover {
+	color: #FFF !important;
+	background-color: #646464 !important;
+}
+
+.navbar-header .navbar-brand {
+	color:#FFF !important;
+	font-size: 1.5em;
+}
+
+.navbar-default .nav li.active a {
+	color:#1D1D1D !important;
 }
