@@ -3,6 +3,7 @@ class Deal < ActiveRecord::Base
 	# Active Record relations
 
 	has_many :monthly_reports
+	belongs_to :user
 
 	# Scopes
 

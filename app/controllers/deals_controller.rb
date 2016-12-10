@@ -1,7 +1,7 @@
 class DealsController < ApplicationController
 
+	before_action :authenticate_user!
 	before_action :set_deal, only: [:show, :edit, :update, :destroy, :activate]
-
 
 	def new
 		@deal = Deal.new
@@ -20,7 +20,7 @@ class DealsController < ApplicationController
 	end
 
 	def index
-		@deals = Deal.all.order('created_at desc')
+		@deals = current_user.deals.order('created_at desc')
 	end
 
 	def edit

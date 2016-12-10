@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :deals do
     put :activate, on: :member
     resources :monthly_reports
