@@ -1,0 +1,5 @@
+<h2>Edit Monthly Report For <%= @report.month_year %></h2>
+<%= simple_form_for([@deal, @report]) do |f| %>
+	<%= render partial: 'form', locals: {f: f} %>
+	<%= f.submit "Edit Report", class: 'btn btn-primary' %>
+<% end %>

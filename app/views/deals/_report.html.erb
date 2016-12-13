@@ -20,6 +20,7 @@
 				<td><%= number_to_currency(report.total_income) %></td>
 				<td><%= number_to_currency(report.total_expenses) %></td>
 				<td><%= number_to_currency(report.cash_flow) %></td>
+				<td><%= link_to "Edit", edit_deal_monthly_report_path(deal, report), class: 'btn btn-default btn-sm' %></td>	
 				<td><%= link_to "Delete", deal_monthly_report_path(deal, report), method: :delete, class: 'btn btn-danger btn-sm' %></td>
 			</tr>
 		<% end %>

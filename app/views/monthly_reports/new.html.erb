@@ -1,45 +1,5 @@
 <h2>New Monthly Report</h2>
 <%= simple_form_for([@deal, @report]) do |f| %>
-
-	<div class="row">
-		<div class="col-lg-6 col-md-6 form-group">
-			<%= f.input :month_year, label: "Report Month", as: :string, input_html: {class: 'form-control datepicker'} %>
-		</div>
-	</div>
-
-	<div id="income_items" class="row">
-		<h4>Income Items</h4>
-		<%= f.simple_fields_for :income_items do |fi| %>
-			<%= render 'income_item', :f => fi %>
-		<% end %>
-		<div class='links'>
-      <%= link_to_add_association 'Add Income', f, :income_items, partial: 'income_item', class: 'btn btn-default' %>
-    </div>
-	</div>
-
-	<div id="expense_items" class="row">
-		<h4>Expense Items</h4>
-		<%= f.simple_fields_for :expense_items do |fi| %>
-			<%= render 'expense_item', :f => fi %>
-		<% end %>
-		<div class='links'>
-      <%= link_to_add_association 'Add Expense', f, :expense_items, partial: 'expense_item', class: 'btn btn-default' %>
-    </div>
-	</div>
-
-	<hr>
+	<%= render partial: 'form', locals: {f: f} %>
 	<%= f.submit "Create Report", class: 'btn btn-primary' %>
 <% end %>
-
-<script type="text/javascript">
-	
-	$(document).ready(function() {
-
-		$('.datepicker').datepicker({
-			format: "MM yyyy",
-    	startView: "months", 
-    	minViewMode: "months"
-    });
-	});
-
-</script>

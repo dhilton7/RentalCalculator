@@ -10,7 +10,7 @@ class MonthlyReportsController < ApplicationController
 	def create
 		@report = @deal.monthly_reports.new monthly_report_params
 		if @report.save
-			redirect_to deal_path(@deal)
+			redirect_to deal_path(@deal), notice: 'monthly report was created'
 		else
 			render :new
 		end
@@ -20,6 +20,11 @@ class MonthlyReportsController < ApplicationController
 	end
 
 	def update
+		if @report.update monthly_report_params 
+			redirect_to deal_path(@deal), notice: 'monthly report was updated'
+		else
+			render :edit
+		end
 	end
 
 	def destroy
