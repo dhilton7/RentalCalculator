@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     put :activate, on: :member
     resources :monthly_reports
   end
-  root 'deals#index'
+
+  get '/' => 'welcome#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
