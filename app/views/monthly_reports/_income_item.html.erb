@@ -1,6 +1,14 @@
 <div class="nested-fields">
-	<%= f.hidden_field :income, value: true %>
-	<%= f.input :name %>
-	<%= f.input :amount %>
-	<%= link_to_remove_association "remove income item", f %>
+	<div class="row">
+		<%= f.hidden_field :income, value: true %>
+		<div class="col-lg-4 col-md-4 form-group">
+			<%= f.input :name, label: "Income Name", input_html: {class: 'form-control'} %>
+		</div>
+		<div class="col-lg-4 col-md-4 form-group">
+			<%= f.input :amount, label: "Amount", input_html: {class: 'form-control'} %>
+		</div>
+		<div class="col-lg-4 col-md-4">
+			<%= link_to_remove_association "remove income item", f, class: 'btn btn-danger' %>
+		</div>
+	</div>
 </div>

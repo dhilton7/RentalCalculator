@@ -2,7 +2,7 @@ class MonthlyReport < ActiveRecord::Base
 
 	# Active Record relations
 	belongs_to :deal
-	has_many :financial_items
+	has_many :financial_items, dependent: :destroy
 	
 	accepts_nested_attributes_for :financial_items
 
@@ -23,5 +23,15 @@ class MonthlyReport < ActiveRecord::Base
 	# Total cashflow for the month
 	def cash_flow
 		total_income - total_expenses
+	end
+
+	def start_date_display
+		d = start_date.present? ? start_date : created_at.beginning_of_month
+		d.strftime("%m/%d/%Y")
+	end
+
+	def end_date_display
+		d = end_date.present? ? end_date : created_at.end_of_month
+		d.strftime("%m/%d/%Y")
 	end
 end
