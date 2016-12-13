@@ -6,8 +6,7 @@
 	<table class="table">
 		<thead>
 		<tr>
-			<th>Start Date</th>
-			<th>End Date</th>
+			<th>Report Month</th>
 			<th>Income</th>
 			<th>Expenses</th>
 			<th>Cash Flow</th>
@@ -17,8 +16,7 @@
 		<tbody>
 		<% @deal.monthly_reports.each do |report| %>
 			<tr>
-				<td><%= report.start_date_display %></td>
-				<td><%= report.end_date_display %></td>
+				<td><%= report.month_year %></td>
 				<td><%= number_to_currency(report.total_income) %></td>
 				<td><%= number_to_currency(report.total_expenses) %></td>
 				<td><%= number_to_currency(report.cash_flow) %></td>

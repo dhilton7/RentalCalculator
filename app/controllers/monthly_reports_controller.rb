@@ -38,7 +38,7 @@ class MonthlyReportsController < ApplicationController
 	end
 
 	def monthly_report_params
-		params.require(:monthly_report).permit(:start_date, :end_date, financial_items_attributes: [:id, :name, :amount, :income, :_destroy])
+		params.require(:monthly_report).permit(:month_year, income_items_attributes: [:id, :name, :amount, :_destroy], expense_items_attributes: [:id, :name, :amount, :_destroy])
 	end
 
 end

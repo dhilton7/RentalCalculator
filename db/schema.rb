@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210011518) do
+ActiveRecord::Schema.define(version: 20161213210707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,16 +53,15 @@ ActiveRecord::Schema.define(version: 20161210011518) do
 
   add_index "deals", ["user_id"], name: "index_deals_on_user_id", using: :btree
 
-  create_table "financial_items", force: :cascade do |t|
-    t.string   "name",                              null: false
-    t.integer  "amount",            default: 0,     null: false
-    t.boolean  "income",            default: false, null: false
+  create_table "expense_items", force: :cascade do |t|
+    t.string   "name",                          null: false
+    t.integer  "amount",            default: 0, null: false
     t.integer  "monthly_report_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
-  add_index "financial_items", ["monthly_report_id"], name: "index_financial_items_on_monthly_report_id", using: :btree
+  add_index "expense_items", ["monthly_report_id"], name: "index_expense_items_on_monthly_report_id", using: :btree
 
   create_table "financial_reports", force: :cascade do |t|
     t.integer  "deal_id"
@@ -72,9 +71,18 @@ ActiveRecord::Schema.define(version: 20161210011518) do
 
   add_index "financial_reports", ["deal_id"], name: "index_financial_reports_on_deal_id", using: :btree
 
+  create_table "income_items", force: :cascade do |t|
+    t.string   "name",                          null: false
+    t.integer  "amount",            default: 0, null: false
+    t.integer  "monthly_report_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "income_items", ["monthly_report_id"], name: "index_income_items_on_monthly_report_id", using: :btree
+
   create_table "monthly_reports", force: :cascade do |t|
-    t.date     "start_date"
-    t.date     "end_date"
+    t.string   "month_year"
     t.integer  "deal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
