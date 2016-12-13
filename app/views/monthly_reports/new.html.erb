@@ -1,9 +1,16 @@
 <%= simple_form_for([@deal, @report]) do |f| %>
-	
-	<%= f.simple_fields_for :financial_items do |i| %>
-		<%= i.input :name %>
-		<%= i.input :amount %>
-	<% end %>
+
+	<%# f.input :start_date, label: "Start Date (only if different from first of month" %>
+
+	<div id="financial_items">
+		<%= f.simple_fields_for :financial_items do |fi| %>
+			<%= render 'expense_item', :f => fi %>
+		<% end %>
+		<div class='links'>
+      <%= link_to_add_association 'Add Expense', f, :financial_items, partial: 'expense_item' %>
+      <%= link_to_add_association 'Add Income', f, :financial_items, partial: 'income_item' %>
+    </div>
+	</div>
 
 	<%= f.submit %>
 <% end %>

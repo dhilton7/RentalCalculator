@@ -5,7 +5,6 @@ class MonthlyReportsController < ApplicationController
 
 	def new
 		@report = @deal.monthly_reports.new
-		@report.financial_items.build
 	end
 
 	def create
@@ -39,7 +38,7 @@ class MonthlyReportsController < ApplicationController
 	end
 
 	def monthly_report_params
-		params.require(:monthly_report).permit(:start_date, :end_date, financial_items_attributes: [:name, :amount, :income])
+		params.require(:monthly_report).permit(:start_date, :end_date, financial_items_attributes: [:id, :name, :amount, :income, :_destroy])
 	end
 
 end
