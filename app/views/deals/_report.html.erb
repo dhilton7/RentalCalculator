@@ -14,7 +14,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		<% @deal.monthly_reports.each do |report| %>
+		<% deal.monthly_reports.each do |report| %>
 			<tr>
 				<td><%= report.month_year %></td>
 				<td><%= number_to_currency(report.total_income) %></td>

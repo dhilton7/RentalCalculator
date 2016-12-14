@@ -1,9 +1,11 @@
 class Deal < ActiveRecord::Base
 
 	# Active Record relations
-
 	has_many :monthly_reports
+	has_many :links
 	belongs_to :user
+
+	accepts_nested_attributes_for :links
 
 	# Constants
 	STATUSES = ['prospect', 'closing', 'active', 'sold']
