@@ -20,7 +20,8 @@ class DealsController < ApplicationController
 	end
 
 	def index
-		@deals = current_user.deals.order('created_at desc')
+		@q = current_user.deals.ransack(params[:q])
+		@deals = @q.result(distinct: true).paginate(page: params[:page])
 	end
 
 	def edit

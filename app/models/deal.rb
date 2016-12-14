@@ -5,10 +5,14 @@ class Deal < ActiveRecord::Base
 	has_many :monthly_reports
 	belongs_to :user
 
-	# Scopes
-
 	# Constants
 	STATUSES = ['prospect', 'closing', 'active', 'sold']
+
+	# Scopes
+	scope :active, -> { where(status: STATUSES[2])}
+
+	# Pagination Count
+	self.per_page = 10
 
 	# Model Functions
 

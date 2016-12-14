@@ -26,6 +26,8 @@ gem 'select2-rails'
 gem 'devise'
 gem 'cocoon'
 gem 'bootstrap-datepicker-rails'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'will_paginate', github: 'jonatack/will_paginate'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
