@@ -18,7 +18,7 @@
 			</div>
 		</div>
 
-		<%= f.submit %>
+		<%= f.submit class: 'btn btn-default btn-md' %>
 	<% end %>
 </div>
 
@@ -26,8 +26,8 @@
 	<table class="table">
 		<thead>
 			<th>Address</th>
-			<th>List Price</th>
-			<th>Purchase Price</th>
+			<th><%= sort_link(@q, :list_pirce, "Listing Price", default_order: :desc) %></th>
+			<th><%= sort_link(@q, :purchase_price) %></th>
 			<th>Cap Rate</th>
 			<th>Actions</th>
 		</thead>
