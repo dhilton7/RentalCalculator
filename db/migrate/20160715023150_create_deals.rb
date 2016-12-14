@@ -5,7 +5,6 @@ class CreateDeals < ActiveRecord::Migration
     	t.string :city
     	t.string :state
     	t.string :zip
-        t.string :neighborhood_scout
     	t.integer :purchase_price, null: false, default: 0
     	t.integer :arv, null: false, default: 0
     	t.integer :closing_costs, null: false, default: 0
