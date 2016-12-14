@@ -1,6 +1,9 @@
+body {
+	background-color: #FFF5D8;
+}
+
 /* Container */
 .container {
-	background-color: rgb(235, 235, 240);
 	padding: 70px 40px 40px 40px;
 }
 
@@ -43,7 +46,7 @@
 	padding-top: 25px;
 }
 
-/* Navigation */
+/* NAVAIGATION */
 
 .navbar a {
 	color: #000 !important;
@@ -61,4 +64,21 @@
 
 .navbar-default .nav li.active a {
 	color:#1D1D1D !important;
+}
+
+/* HEADER */
+
+#hero {
+	padding: 240px 0px !important;
+	background: image_url('hero.jpg') no-repeat center center;
+	background-size: cover;
+	width: 100%;
+	border-bottom: 2px solid #C9C9C9;
+}
+
+.banner h1 {
+	color: #FFF;
+	/*font-family: 'Pacifico', cursive;*/
+	font-size: 6.5em;
+	text-align: center;
 }
