@@ -18,7 +18,7 @@
 			<td><%= number_to_currency(deal.list_price) %></td>
 			<td><%= number_to_currency(deal.purchase_price) %></td>
 			<td><%= "#{deal.purchase_cap_rate}%" %></td>
-			<td><%= link_to "Edit", edit_deal_path(deal) %> | <%= link_to "NH Scout", deal.neighborhood_scout %></td>
+			<td><%= link_to "Edit", edit_deal_path(deal), class: 'btn btn-warning btn-sm'  %> | <%= link_to "NH Scout", deal.neighborhood_scout, class: 'btn btn-info btn-sm' %> | <%= link_to "Delete", deal_path(deal), method: :delete, class: 'btn btn-danger btn-sm'  %></td>
 		</tr>
 		<% end %>
 	</tbody>

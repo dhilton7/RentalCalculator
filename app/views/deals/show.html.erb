@@ -8,9 +8,18 @@
 	</div>
 </div>
 
-<% if @deal.status == Deal::STATUSES[2] %>
-	<%= render partial: 'report', locals: {deal: @deal} %>
-<% else %>
-	<%= render partial: 'analysis', locals: {deal: @deal} %>
-<% end %>
+<div class="row">
+	<ul class="nav nav-tabs">
+	  <li  role="presentation" class="active"><a href="#analysis"  aria-controls="analysis" role="tab" data-toggle="tab">Analysis</a></li>
+	  <li role="presentation"><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Reports</a></li>
+	</ul>
 
+	<div class="tab-content">
+		<div role="tabpanel" class="tab-pane active" id="analysis">
+			<%= render partial: 'analysis', locals: {deal:@deal} %>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="report">
+			<%= render partial: 'report', locals: {deal: @deal} %>
+		</div>
+	</div>
+</div>

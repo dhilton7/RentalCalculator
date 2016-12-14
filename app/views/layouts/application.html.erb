@@ -9,7 +9,12 @@
 <body>
 
 <%= render partial: 'layouts/navigation' %>
-<div <%= 'class="container"' if controller_name != 'welcome' %>>
+<div
+<% if controller_name != 'welcome' %>
+	class="container">
+<% else %>
+	>
+<% end %>
 	<%= yield %>
 </div>
 
