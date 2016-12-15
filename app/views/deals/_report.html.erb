@@ -1,29 +1,27 @@
-<div class="header row">
+<div class="section-header">
 	<h1>Reports</h1>
 	<%= link_to "New Monthly Report", new_deal_monthly_report_path(deal), class: "btn btn-primary" %>
 </div>
 
-<div class="row">
-	<table class="table">
-		<thead>
+<table class="table">
+	<thead>
+	<tr>
+		<th>Report Month</th>
+		<th>Income</th>
+		<th>Expenses</th>
+		<th>Cash Flow</th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	<% deal.monthly_reports.each do |report| %>
 		<tr>
-			<th>Report Month</th>
-			<th>Income</th>
-			<th>Expenses</th>
-			<th>Cash Flow</th>
-			<th></th>
+			<td><%= report.month_year %></td>
+			<td><%= number_to_currency(report.total_income) %></td>
+			<td><%= number_to_currency(report.total_expenses) %></td>
+			<td><%= number_to_currency(report.cash_flow) %></td>
+			<td><%= link_to "Edit", edit_deal_monthly_report_path(deal, report), class: 'btn btn-warning btn-sm' %> | <%= link_to "Delete", deal_monthly_report_path(deal, report), method: :delete, class: 'btn btn-danger btn-sm' %></td>
 		</tr>
-		</thead>
-		<tbody>
-		<% deal.monthly_reports.each do |report| %>
-			<tr>
-				<td><%= report.month_year %></td>
-				<td><%= number_to_currency(report.total_income) %></td>
-				<td><%= number_to_currency(report.total_expenses) %></td>
-				<td><%= number_to_currency(report.cash_flow) %></td>
-				<td><%= link_to "Edit", edit_deal_monthly_report_path(deal, report), class: 'btn btn-warning btn-sm' %> | <%= link_to "Delete", deal_monthly_report_path(deal, report), method: :delete, class: 'btn btn-danger btn-sm' %></td>
-			</tr>
-		<% end %>
-		</tbody>
-	</table>
-</div>
+	<% end %>
+	</tbody>
+</table>

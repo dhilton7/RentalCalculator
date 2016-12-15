@@ -7,6 +7,7 @@ body {
 	padding: 110px 40px 40px 40px;
 }
 
+/* Page Header */
 .header h1 {
 	display: inline;
 }
@@ -15,6 +16,21 @@ body {
 	display: inline;
 	float: right;
 }
+
+/* Section Header */
+.section-header {
+	padding: 20px 0px 30px 0px;
+}
+
+.section-header h1 {
+	display: inline;
+}
+
+.section-header .btn {
+	display: inline;
+	float: right;
+}
+
 
 /* Show labels on top of input */
 .form-control label {
