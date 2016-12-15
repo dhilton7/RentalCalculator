@@ -1,7 +1,6 @@
 <div class="header">
 	<div class="row">
 		<h1><%= @deal.address_string %></h1>
-		<%= link_to "Edit Deal", edit_deal_path(@deal), class: 'btn btn-primary btn-lg' %>
 		<% if @deal.status != Deal::STATUSES[2] %>
 			<%= link_to "Make Active", activate_deal_path(@deal), method: :put, class: 'btn btn-default btn-lg' %>
 		<% end %>

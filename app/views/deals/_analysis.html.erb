@@ -1,37 +1,52 @@
-<div class="row">
-	<label>Purchase Price:</label> <%= number_to_currency(deal.purchase_price) %>
+<div class="header row">
+	<h1>Analysis</h1>
+	<%= link_to "Edit Deal", edit_deal_path(@deal), class: 'btn btn-primary btn-lg' %>
 </div>
 
 <div class="row">
-	<label>Monthly Income:</label> <%= number_to_currency(deal.total_income) %>
+	<div class="col-lg-2 col-md-2">
+			<label>Purchase Price:</label>
+	</div>
+	<div class="col-lg-2 col-md-2 text-right">
+		<%= number_to_currency(deal.purchase_price) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Monthly Income:</label><br/><%= number_to_currency(deal.total_income) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Monthly Expenses:</label><br/><%= number_to_currency(deal.total_expenses) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Monthly Cashflow:</label><br/><%= number_to_currency(deal.cash_flow) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Pro forma Cap Rate:</label><br/><%= "#{deal.pro_forma_cap_rate}%" %>
+	</div>
 </div>
 
 <div class="row">
-	<label>Monthly Expenses:</label> <%= number_to_currency(deal.total_expenses) %>
-</div>
-
-<div class="row">
-	<label>Monthly Cashflow:</label> <%= number_to_currency(deal.cash_flow) %>
-</div>
-
-<div class="row">
-	<label>Pro forma Cap Rate:</label> <%= "#{deal.pro_forma_cap_rate}%"%>
-</div>
-
-<div class="row">
-	<label>NOI:</label> <%= number_to_currency(deal.noi) %>
-</div>
-
-<div class="row">
-	<label>Total Cash Needed:</label> <%= number_to_currency(deal.total_cash_needed) %>
-</div>
-
-<div class="row">
-	<label>Cash on Cash ROI:</label> <%= "#{deal.cash_on_cash_roi}%" %>
-</div>
-
-<div class="row">
-	<label>Purchase Cap Rate:</label> <%= "#{deal.purchase_cap_rate}%" %>
+	<div class="col-lg-2 col-md-2">
+		<label>Closing Costs:</label><br/>
+		<label>Estimated Repairs:</label><br/>
+		<label>Total Project Cost:</label><br/>
+	</div>
+	<div class="col-lg-2 col-md-2 text-right">
+		<%= number_to_currency(deal.closing_costs) %><br/>
+		<%= number_to_currency(deal.estimated_repairs) %><br/>
+		<br/>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>NOI:</label><br/><%= number_to_currency(deal.noi) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Total Cash Needed:</label><br/><%= number_to_currency(deal.total_cash_needed) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Cash on Cash ROI:</label><br/><%= "#{deal.cash_on_cash_roi}%" %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Purchase Cap Rate:</label><br/><%= "#{deal.purchase_cap_rate}%" %>
+	</div>
 </div>
 
 <div class="row">
