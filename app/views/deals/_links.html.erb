@@ -1,3 +1,7 @@
+<div class="header row">
+	<h1>Links</h1>
+	<%= link_to "New Link", new_deal_link_path(deal), class: 'btn btn-primary btn-md' %>
+</div>
 <div class="row">
 	<table class="table">
 		<thead>
@@ -12,7 +16,7 @@
 			<tr>
 				<td><%= l.name %></td>
 				<td><%= l.url %></td>
-				<td><a href="#" class='btn btn-danger btn-sm'>Delete</a><%#= link_to "Delete" %></td>
+				<td><%= link_to "Edit", edit_deal_link_path(deal, l), class: 'btn btn-warning btn-sm' %> <%= link_to "Delete", deal_link_path(deal, l), method: :delete, class: 'btn btn-danger btn-sm' %></td>
 			</tr>
 			<% end %>
 		</tbody>

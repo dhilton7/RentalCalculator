@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :deals do
     put :activate, on: :member
     resources :monthly_reports
+    resources :links, except: [:show, :index]
   end
 
   get '/' => 'welcome#index'
