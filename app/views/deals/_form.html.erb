@@ -45,19 +45,13 @@
 
 	<div class="Loan">
 		<h3>Loan Information</h3>
-		<div class="row">
-			<div class="col-lg-6 form-group">
-				<%= f.input :down_payment, label: "Down Payment", input_html: {class: 'form-control'} %>
-			</div>
-			<div class="col-lg-6 form-group">
-				<%= f.input :interest_rate, label: "Interest Rate (%)", input_html: {class: 'form-control'} %>
-			</div>
-			<div class="col-lg-6 form-group">
-				<%= f.input :loan_points, label: "Loan Points", input_html: {class: 'form-control'} %>
-			</div>
-			<div class="col-lg-6 form-group">
-				<%= f.input :loan_years, label: "Amortized Over How Many Years?", input_html: {class: 'form-control'} %>
-			</div>
+		<div id="loans">
+			<%= f.simple_fields_for :loans do |li| %>
+				<%= render partial: 'loans/form', locals: {f:li} %>
+			<% end %>
+		</div>
+		<div class="links form-group">
+			<%= link_to_add_association 'Add Loan', f, :loans, partial: 'loans/form', class: 'btn btn-default' %>
 		</div>
 		<hr>
 	</div>

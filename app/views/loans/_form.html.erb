@@ -1,0 +1,23 @@
+<div class="nested-fields">
+	<div class="row">
+		<div class="col-lg-6 col-md-6 form-group">
+			<%= f.input :down_payment, label: "Down Payment", input_html: {class: 'form-control'} %>
+			<%# add buttons to make convenient calculations %>
+		</div>
+		<div class="col-lg-6 col-md-6 form-group">
+			<%= f.input :amount, label: "Loan Amount", input_html: { class: 'form-control'} %>
+		</div>
+		<div class="col-lg-6 col-md-6 form-group">
+			<%= f.input :interest_rate, label: "Interest Rate (%)", input_html: {class: 'form-control'} %>
+		</div>
+		<div class="col-lg-6 col-md-6 form-group">
+			<%= f.input :ammortization, label: "Amortized Over How Many Years?", input_html: {class: 'form-control'} %>
+		</div>
+		<div class="col-lg-6 col-md-6 form-group">
+			<%= f.input :points, label: "Loan Points", input_html: {class: 'form-control'} %>
+		</div>
+		<div class="col-lg-6 col-md-6 form-group">
+			<%= f.input :fees, label: "Other fees", input_html: { class: 'form-control'} %>
+		</div>
+	</div>
+</div>

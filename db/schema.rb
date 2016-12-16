@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214221114) do
+ActiveRecord::Schema.define(version: 20161216015939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,6 @@ ActiveRecord::Schema.define(version: 20161214221114) do
     t.integer  "arv",                                          default: 0,          null: false
     t.integer  "closing_costs",                                default: 0,          null: false
     t.integer  "estimated_repairs",                            default: 0,          null: false
-    t.integer  "down_payment",                                 default: 0,          null: false
-    t.decimal  "interest_rate",       precision: 4,  scale: 2, default: 0.0,        null: false
-    t.integer  "loan_points",                                  default: 0,          null: false
-    t.integer  "loan_years",                                   default: 0,          null: false
     t.integer  "gross_rent",                                   default: 0,          null: false
     t.integer  "other_income",                                 default: 0,          null: false
     t.integer  "electricity",                                  default: 0,          null: false
@@ -48,6 +44,7 @@ ActiveRecord::Schema.define(version: 20161214221114) do
     t.string   "status",                                       default: "prospect", null: false
     t.integer  "user_id"
     t.text     "notes"
+    t.boolean  "cash_purcase",                                 default: false,      null: false
   end
 
   add_index "deals", ["user_id"], name: "index_deals_on_user_id", using: :btree
@@ -89,6 +86,21 @@ ActiveRecord::Schema.define(version: 20161214221114) do
   end
 
   add_index "links", ["deal_id"], name: "index_links_on_deal_id", using: :btree
+
+  create_table "loans", force: :cascade do |t|
+    t.integer  "amount",                                default: 0,     null: false
+    t.integer  "down_payment",                          default: 0,     null: false
+    t.integer  "points"
+    t.integer  "ammortization",                         default: 0,     null: false
+    t.decimal  "interest_rate", precision: 4, scale: 2, default: 0.0,   null: false
+    t.boolean  "interest_only",                         default: false, null: false
+    t.integer  "deal_id"
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.integer  "fees",                                  default: 0,     null: false
+  end
+
+  add_index "loans", ["deal_id"], name: "index_loans_on_deal_id", using: :btree
 
   create_table "monthly_reports", force: :cascade do |t|
     t.string   "month_year"

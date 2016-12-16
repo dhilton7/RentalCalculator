@@ -1,10 +1,12 @@
 class Deal < ActiveRecord::Base
 
 	# Active Record relations
+	has_many :loans
 	has_many :monthly_reports
 	has_many :links
 	belongs_to :user
 
+	accepts_nested_attributes_for :loans
 	accepts_nested_attributes_for :links
 
 	# Constants
@@ -17,29 +19,7 @@ class Deal < ActiveRecord::Base
 	self.per_page = 10
 
 	# Model Functions
-
-	# calculate the monthly P&I
-	def mortgage_payment_monthly
-		c = monthly_interest_rate
-		n = number_of_payments
-		(loan_amount * ((c * ((1 + c)**n)) / (((1 + c)**n) - 1))).round(2)
-	end
-
-	# calculate interest rate per month
-	def monthly_interest_rate
-		interest_rate / (100 * 12)
-	end
-
-	# calculate number of monthly payments
-	def number_of_payments
-		loan_years * 12
-	end
-
-	# total loan amount
-	def loan_amount
-		purchase_price - down_payment
-	end
-
+	
 	# calculate monthly income
 	def total_income
 		gross_rent + other_income
@@ -47,7 +27,7 @@ class Deal < ActiveRecord::Base
 
 	# calculate monthly expenses
 	def total_expenses
-		operating_expenses + mortgage_payment_monthly
+		operating_expenses + loans.map(&:monthly_payment).reduce(:+)
 	end
 
 	# calculate operating expenses
@@ -57,7 +37,7 @@ class Deal < ActiveRecord::Base
 
 	# calculate mortgage expenses
 	def mortgage_expenses
-		mortgage_payment_monthly + pmi
+		loans.map(&:monthly_payment).reduce(:+) + pmi
 	end	
 
 	# calculate dollar value of vacancy from percent
@@ -92,7 +72,7 @@ class Deal < ActiveRecord::Base
 
 	# total cash needed for deal
 	def total_cash_needed
-		down_payment + closing_costs + estimated_repairs + (loan_points * loan_amount)
+		loans.map(&:down_payment).reduce(:+) + closing_costs + estimated_repairs + loans.map(&:points_payment).reduce(:+)
 	end
 
 	# predicted cap rate based on ARV (Pro Forma Cap)
