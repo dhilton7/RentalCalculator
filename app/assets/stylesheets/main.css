@@ -2,12 +2,12 @@ body {
 	background-color: #FFF5E9;
 }
 
-/* Container */
+/* CONTAINER */
 .container {
 	padding: 70px 40px 40px 40px;
 }
 
-/* Page Header */
+/* PAGE HEADER */
 .header h1 {
 	display: inline;
 }
@@ -17,7 +17,7 @@ body {
 	float: right;
 }
 
-/* Section Header */
+/* SECTION HEADER */
 .section-header {
 	padding: 30px 0px 20px 0px;
 }
@@ -31,6 +31,7 @@ body {
 	float: right;
 }
 
+/* FORM */
 
 /* Show labels on top of input */
 .form-control label {
@@ -59,7 +60,7 @@ body {
 }
 
 .row {
-	padding-top: 25px;
+	padding-top: 15px;
 }
 
 /* NAVAIGATION */
@@ -82,7 +83,7 @@ body {
 	color:#1D1D1D !important;
 }
 
-/* HEADER */
+/* LANDING HEADER */
 
 #hero {
 	padding: 240px 0px !important;
@@ -98,3 +99,9 @@ body {
 	font-size: 6.5em;
 	text-align: center;
 }
+
+/* OTHER */
+.values {
+	padding-bottom: 5px;
+}
+
