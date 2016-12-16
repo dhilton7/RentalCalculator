@@ -1,7 +1,8 @@
 <div class="section-header">
-	<h1>Analysis</h1>
+	<h2>Analysis</h2>
 	<%= link_to "Edit Deal", edit_deal_path(@deal), class: 'btn btn-primary' %>
 </div>
+<hr>
 
 <div class="row">
 	<div class="col-lg-2 col-md-2">
@@ -48,24 +49,37 @@
 		<label>Purchase Cap Rate:</label><br/><%= "#{deal.purchase_cap_rate}%" %>
 	</div>
 </div>
-
+<hr>
 <div class="row">
-	<label>Total Operating Expenses:</label> <%= number_to_currency(deal.operating_expenses) %>
-</div>
-
-<div class="row">
-	<label>Mortgage Expenses:</label> <%= number_to_currency(deal.mortgage_expenses) %>
-</div>
-
-<div class="row">
-	<label>P&I Expenses:</label> <%= number_to_currency(deal.p_i) %>
-</div>
-
-<div class="row">
-	<label>Notes:</label> <%= deal.notes %>
-</div>
-
-<div class="financing">
-	<div class="row">
+	<div class="col-lg-4 col-md-4">
+		<h4>Loan</h4>
+	</div>
+	<div class="col-lg-4 col-md-4">
+		<div class="col-lg-12">
+			<h4>Expenses</h4>
+		</div>
+		<div class="col-lg-9 col-md-9 text-left">
+			<label>Mortgage:</label><br/>
+			<label>Insurance & Taxes:</label><br/>
+			<label>Total Operating Expenses:</label>
+		</div>
+		<div class="col-lg-3 col-md-3 text-right">
+			<%= number_to_currency(deal.mortgage_expenses) %><br/>
+			<%= number_to_currency(deal.p_i) %><br/>
+			<%= number_to_currency(deal.operating_expenses) %>
+		</div>
+	</div>
+	<div class="col-lg-4 col-md-4">
+		<h4>Income</h4>
 	</div>
 </div>
+<% if @deal.notes.present? %>
+	<div class="row">
+		<div class="col-lg-12 col-md-12">
+			<h4>Notes</h4>
+		</div>
+		<div class="col-lg-12 col-md-12">
+			<%= deal.notes %>
+		</div>
+	</div>
+<% end %>

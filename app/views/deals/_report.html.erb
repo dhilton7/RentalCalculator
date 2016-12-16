@@ -1,7 +1,8 @@
 <div class="section-header">
-	<h1>Reports</h1>
+	<h2>Reports</h2>
 	<%= link_to "New Monthly Report", new_deal_monthly_report_path(deal), class: "btn btn-primary" %>
 </div>
+<hr>
 
 <table class="table">
 	<thead>
@@ -20,7 +21,7 @@
 			<td><%= number_to_currency(report.total_income) %></td>
 			<td><%= number_to_currency(report.total_expenses) %></td>
 			<td><%= number_to_currency(report.cash_flow) %></td>
-			<td><%= link_to "Edit", edit_deal_monthly_report_path(deal, report), class: 'btn btn-warning btn-sm' %> | <%= link_to "Delete", deal_monthly_report_path(deal, report), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+			<td><%= link_to "Edit", edit_deal_monthly_report_path(deal, report), class: 'btn btn-warning btn-sm' %> <%= link_to "Delete", deal_monthly_report_path(deal, report), method: :delete, class: 'btn btn-danger btn-sm' %></td>
 		</tr>
 	<% end %>
 	</tbody>

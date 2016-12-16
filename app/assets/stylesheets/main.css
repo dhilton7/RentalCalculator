@@ -4,7 +4,7 @@ body {
 
 /* Container */
 .container {
-	padding: 110px 40px 40px 40px;
+	padding: 70px 40px 40px 40px;
 }
 
 /* Page Header */
@@ -19,10 +19,10 @@ body {
 
 /* Section Header */
 .section-header {
-	padding: 20px 0px 30px 0px;
+	padding: 30px 0px 20px 0px;
 }
 
-.section-header h1 {
+.section-header h2 {
 	display: inline;
 }
 
