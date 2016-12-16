@@ -1,5 +1,5 @@
 <h2>New Monthly Report</h2>
 <%= simple_form_for([@deal, @report]) do |f| %>
 	<%= render partial: 'form', locals: {f: f} %>
-	<%= f.submit "Create Report", class: 'btn btn-primary' %>
+	<%= f.submit "Create Report", class: 'btn btn-primary btn-lg pull-right' %>
 <% end %>

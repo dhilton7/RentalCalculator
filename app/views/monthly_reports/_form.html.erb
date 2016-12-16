@@ -3,13 +3,12 @@
 		<%= f.input :month_year, label: "Report Month", as: :string, input_html: {class: 'form-control datepicker'} %>
 	</div>
 </div>
-<br/>
 <h4>Income Items</h4>
 <div id="income_items">
 	<%= f.simple_fields_for :income_items do |fi| %>
 		<%= render 'income_item', :f => fi %>
 	<% end %>
-	<div class='links'>
+	<div class='links form-group'>
 		<%= link_to_add_association 'Add Income', f, :income_items, partial: 'income_item', class: 'btn btn-default' %>		
 	</div>
 </div>
