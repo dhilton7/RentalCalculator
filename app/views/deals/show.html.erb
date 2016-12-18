@@ -12,6 +12,7 @@
 		<li  role="presentation" class="active"><a href="#analysis"  aria-controls="analysis" role="tab" data-toggle="tab">Analysis</a></li>
 	  <li role="presentation"><a href="#links" aria-controls="links" role="tab" data-toggle="tab">Links</a></li>
 	  <li role="presentation"><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Reports</a></li>
+	  <li role="presentation"><a href="#images" aria-controls="images" role="tab" data-toggle="tab">Images</a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -23,6 +24,9 @@
 		</div>
 		<div role="tabpanel" class="tab-pane" id="report">
 			<%= render partial: 'report', locals: {deal: @deal} %>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="images">
+			<%= render partial: 'images', locals: {deal: @deal} %>
 		</div>
 	</div>
 </div>
