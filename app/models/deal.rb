@@ -1,9 +1,9 @@
 class Deal < ActiveRecord::Base
 
 	# Active Record relations
-	has_many :loans
-	has_many :monthly_reports
-	has_many :links
+	has_many :loans, dependent: :destroy
+	has_many :monthly_reports, dependent: :destroy
+	has_many :links, dependent: :destroy
 	belongs_to :user
 
 	accepts_nested_attributes_for :loans

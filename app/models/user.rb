@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Active Record Relations
-  has_many :deals
+  has_many :deals, dependent: :destroy
 
 end
