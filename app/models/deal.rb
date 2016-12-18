@@ -75,6 +75,11 @@ class Deal < ActiveRecord::Base
 		loans.map(&:down_payment).reduce(:+) + closing_costs + estimated_repairs + loans.map(&:points_payment).reduce(:+)
 	end
 
+	# total project cost
+	def total_project_cost
+		purchase_price + closing_costs + estimated_repairs
+	end
+
 	# predicted cap rate based on ARV (Pro Forma Cap)
 	def pro_forma_cap_rate
 		(noi / arv * 100).round(2)

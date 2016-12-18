@@ -26,15 +26,19 @@
 </div>
 
 <div class="row">
-	<div class="col-lg-2 col-md-2">
-		<label>Closing Costs:</label><br/>
-		<label>Estimated Repairs:</label><br/>
-		<label>Total Project Cost:</label><br/>
-	</div>
-	<div class="col-lg-2 col-md-2 text-right">
-		<%= number_to_currency(deal.closing_costs) %><br/>
-		<%= number_to_currency(deal.estimated_repairs) %><br/>
-		<br/>
+	<div class="col-lg-4 col-md-4">
+		<div>
+			<label>Closing Costs:</label><span class="pull-right"><%= number_to_currency(deal.closing_costs) %>
+		</div>
+		<div>
+			<label>Estimated Repairs:</label><span class="pull-right"><%= number_to_currency(deal.estimated_repairs) %></span>
+		</div>
+		<div>
+			<label>Total Project Cost:</label><span class="pull-right"><%= number_to_currency(deal.total_project_cost) %></span>
+		</div>
+		<div>
+			<label>After Repair Value:</label><span class="pull-right"><%= number_to_currency(deal.arv) %></span>
+		</div>
 	</div>
 	<div class="col-lg-2 col-md-2">
 		<label>NOI:</label><br/><%= number_to_currency(deal.noi) %>
