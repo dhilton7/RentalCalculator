@@ -33,11 +33,6 @@ body {
 
 /* FORM */
 
-/* Show labels on top of input */
-.form-control label {
-	display: block;
-}
-
 /* Submit section of forms */
 .submit {
 	float: right;

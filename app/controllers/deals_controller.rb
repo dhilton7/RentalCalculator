@@ -5,6 +5,7 @@ class DealsController < ApplicationController
 
 	def new
 		@deal = Deal.new
+		@deal.loans.build
 	end
 
 	def create
