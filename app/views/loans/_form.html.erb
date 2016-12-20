@@ -1,12 +1,17 @@
 <div class="nested-fields">
 	<div class="row">
 		<div class="col-lg-6 col-md-6 form-group">
-			<%= f.input :down_payment, label: "Down Payment", input_html: {class: 'form-control'} %>
-			<%# add buttons to make convenient calculations %>
+			<%= f.input :down_payment, label: "Down Payment", input_html: {class: 'form-control down_payment'} %>
+			<%= button_tag("5%", type: 'button', id: '5_percent', class: 'btn btn-default btn-sm') %>
+			<%= button_tag("10%", type: 'button', id: '10_percent', class: 'btn btn-default btn-sm') %>
+			<%= button_tag("15%", type: 'button', id: '15_percent', class: 'btn btn-default btn-sm') %>
+			<%= button_tag("20%", type: 'button', id: '20_percent', class: 'btn btn-default btn-sm') %>
 		</div>
 		<div class="col-lg-6 col-md-6 form-group">
 			<%= f.input :amount, label: "Loan Amount", input_html: { class: 'form-control'} %>
 		</div>
+	</div>
+	<div class="row">
 		<div class="col-lg-6 col-md-6 form-group">
 			<%= f.input :interest_rate, label: "Interest Rate (%)", input_html: {class: 'form-control'} %>
 		</div>
@@ -21,3 +26,30 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+
+		$('#5_percent').on('click', function(event) {
+			var price = $('#purchase_price').val();
+			$('.down_payment').val(price * 0.05);
+		})
+
+		$('#10_percent').on('click', function(event) {
+			var price = $('#purchase_price').val();
+			$('.down_payment').val(price * 0.1);
+		})		
+
+		$('#15_percent').on('click', function(event) {
+			var price = $('#purchase_price').val();
+			$('.down_payment').val(price * 0.15);
+		})		
+
+		$('#20_percent').on('click', function(event) {
+			var price = $('#purchase_price').val();
+			$('.down_payment').val(price * 0.20);
+		})
+	});
+</script>
