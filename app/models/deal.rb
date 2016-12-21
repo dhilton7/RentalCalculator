@@ -27,7 +27,7 @@ class Deal < ActiveRecord::Base
 
 	# calculate monthly expenses
 	def total_expenses
-		operating_expenses + loans.map(&:monthly_payment).reduce(:+)
+		operating_expenses + (cash_purchase? ? 0 : loans.map(&:monthly_payment).reduce(:+))
 	end
 
 	# calculate operating expenses
@@ -37,7 +37,7 @@ class Deal < ActiveRecord::Base
 
 	# calculate mortgage expenses
 	def mortgage_expenses
-		loans.map(&:monthly_payment).reduce(:+) + pmi
+		cash_purchase? ? 0 : (loans.map(&:monthly_payment).reduce(:+) + pmi)
 	end	
 
 	# calculate dollar value of vacancy from percent
@@ -72,7 +72,7 @@ class Deal < ActiveRecord::Base
 
 	# total cash needed for deal
 	def total_cash_needed
-		loans.map(&:down_payment).reduce(:+) + closing_costs + estimated_repairs + loans.map(&:points_payment).reduce(:+)
+		(cash_purchase? ? purchase_price : loans.map(&:down_payment).reduce(:+)) + closing_costs + estimated_repairs + loans.map(&:points_payment).reduce(:+)
 	end
 
 	# total project cost

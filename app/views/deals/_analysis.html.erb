@@ -54,29 +54,31 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-lg-4 col-md-4">
-		<h4>Loan</h4>
-		<% deal.loans.each do |l| %>
-			<div>
-				<label>Down Payment:</label><span class="values pull-right"><%= number_to_currency(l.down_payment) %><br/></span>
-			</div>
-			<div>
-				<label>Loan Amount:</label><span class="pull-right"><%= number_to_currency(l.amount) %></span>
-			</div>
-			<div>
-				<label>Loan Points:</label><span class="pull-right"><%= number_to_currency(l.points_payment) %></span>
-			</div>
-			<div>
-				<label>Other Fees:</label><span class="pull-right"><%= number_to_currency(l.fees) %></span>
-			</div>
-			<div>
-				<label>Ammortized Over:</label><span class="pull-right"><%= "#{l.ammortization} Years" %></span>
-			</div>
-			<div>
-				<label>Monthly P&I:</label><span class="pull-right"><%= number_to_currency(l.monthly_payment) %></span>
-			</div>
-		<% end %>
-	</div>
+	<% if !deal.cash_purchase? %>
+		<div class="col-lg-4 col-md-4">
+			<h4>Loan</h4>
+			<% deal.loans.each do |l| %>
+				<div>
+					<label>Down Payment:</label><span class="values pull-right"><%= number_to_currency(l.down_payment) %><br/></span>
+				</div>
+				<div>
+					<label>Loan Amount:</label><span class="pull-right"><%= number_to_currency(l.amount) %></span>
+				</div>
+				<div>
+					<label>Loan Points:</label><span class="pull-right"><%= number_to_currency(l.points_payment) %></span>
+				</div>
+				<div>
+					<label>Other Fees:</label><span class="pull-right"><%= number_to_currency(l.fees) %></span>
+				</div>
+				<div>
+					<label>Ammortized Over:</label><span class="pull-right"><%= "#{l.ammortization} Years" %></span>
+				</div>
+				<div>
+					<label>Monthly P&I:</label><span class="pull-right"><%= number_to_currency(l.monthly_payment) %></span>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
 	<div class="col-lg-4 col-md-4">
 		<h4>Expenses</h4>
 		<div>
