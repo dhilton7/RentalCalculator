@@ -1,5 +1,6 @@
 <h2>New Monthly Report</h2>
 <%= simple_form_for([@deal, @report]) do |f| %>
 	<%= render partial: 'form', locals: {f: f} %>
-	<%= f.submit "Create Report", class: 'btn btn-primary btn-lg pull-right' %>
+	<%= link_to 'Cancel', 'javascript:history.go(-1);', class: 'btn btn-default btn-lg pull-right' %>
+	<%= f.submit "Create Report", class: 'btn btn-primary btn-lg pull-right btn-submit' %>
 <% end %>

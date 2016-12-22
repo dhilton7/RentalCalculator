@@ -34,12 +34,8 @@ body {
 /* FORM */
 
 /* Submit section of forms */
-.submit {
-	float: right;
-}
-
 .btn-submit {
-	padding: 15px 60px;
+	margin-right: 10px;
 }
 
 .col-lg-12 .form-control {
