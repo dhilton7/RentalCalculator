@@ -46,6 +46,10 @@ class DealsController < ApplicationController
 		redirect_to deal_path(@deal), notice: "Deal was updated to active"
 	end
 
+	def active
+		@deals = current_user.deals.active.paginate(page: params[:page])
+	end
+
 	private
 
 	def set_deal

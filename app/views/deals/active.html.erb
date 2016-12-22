@@ -1,0 +1,9 @@
+<div class="header">
+	<div class="row">
+		<h1>Active Properties</h1>
+		<%= link_to "Analyze New Deal", new_deal_path, class: 'btn btn-primary btn-lg' %>
+	</div>
+</div>
+<div class="row">
+	<%= render partial: 'table', locals: { deals: @deals } %>
+</div>
