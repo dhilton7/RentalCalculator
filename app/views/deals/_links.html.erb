@@ -15,7 +15,7 @@
 		<% deal.links.each do |l| %>
 		<tr>
 			<td><%= l.name %></td>
-			<td><%= l.url %></td>
+			<td><%= link_to(l.url, l.url, target: '_blank') %> <%= fa_icon('external-link') %></td>
 			<td><%= link_to "Edit", edit_deal_link_path(deal, l), class: 'btn btn-warning btn-sm' %> <%= link_to "Delete", deal_link_path(deal, l), method: :delete, class: 'btn btn-danger btn-sm' %></td>
 		</tr>
 		<% end %>
