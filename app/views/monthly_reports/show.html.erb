@@ -1,0 +1,30 @@
+<div class="section-header">
+	<div class="row">
+		<div class="col-lg-12">
+			<h2><%= @report.month_year %> report for <%= @property.address %></h2>
+			<%= link_to "Edit Report", edit_property_monthly_report_path(@property, @report), class: 'btn btn-warning pull-right' %>
+		</div>
+	</div>
+</div>
+
+<div class="income">
+	<div class="row">
+		<div class="col-lg-12">
+			<h3>Income Items</h3>
+		</div>
+		<div class="col-lg-12">
+			<%= render partial: 'item_table', locals: {items:@report.income_items} %>
+		</div>
+	</div>
+</div>
+
+<div class="expenses">
+	<div class="row">
+		<div class="col-lg-12">
+			<h3>Expense Items</h3>
+		</div>
+		<div class="col-lg-12">
+			<%= render partial: 'item_table', locals: {items:@report.expense_items} %>
+		</div>
+	</div>
+</div>

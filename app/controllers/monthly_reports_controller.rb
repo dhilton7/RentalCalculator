@@ -1,6 +1,6 @@
 class MonthlyReportsController < ApplicationController
 
-	before_action :set_report, only: [:edit, :update, :destroy]
+	before_action :set_report, only: [:show, :edit, :update, :destroy]
 	before_action :set_property
 
 	def new
@@ -14,9 +14,6 @@ class MonthlyReportsController < ApplicationController
 		else
 			render :new
 		end
-	end
-
-	def edit
 	end
 
 	def update

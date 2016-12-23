@@ -25,7 +25,7 @@
 			<td><%= number_to_currency(report.total_income) %></td>
 			<td><%= number_to_currency(report.total_expenses) %></td>
 			<td><%= number_to_currency(report.cash_flow) %></td>
-			<td><%= link_to "Edit", edit_property_monthly_report_path(property, report), class: 'btn btn-warning btn-sm' %> <%= link_to "Delete", property_monthly_report_path(property, report), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+			<td><%= link_to "View", property_monthly_report_path(property, report), class: 'btn btn-sm btn-info' %> <%= link_to "Edit", edit_property_monthly_report_path(property, report), class: 'btn btn-warning btn-sm' %> <%= link_to "Delete", property_monthly_report_path(property, report), method: :delete, class: 'btn btn-danger btn-sm' %></td>
 		</tr>
 	<% end %>
 	</tbody>
