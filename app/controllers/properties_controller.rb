@@ -10,7 +10,7 @@ class PropertiesController < ApplicationController
 	def create
 		@property = current_user.properties.new property_params
 		if @property.save
-			redirect_to property_path(@property)
+			redirect_to property_path(@property), notice: "Property was created."
 		else
 			render :new
 		end
@@ -29,7 +29,7 @@ class PropertiesController < ApplicationController
 
 	def update
 		if @property.update property_params
-			redirect_to property_path(@property)
+			redirect_to property_path(@property), notice: "Property was updated."
 		else
 			render :edit
 		end

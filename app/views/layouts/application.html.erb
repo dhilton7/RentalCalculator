@@ -7,16 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= render partial: 'layouts/navigation' %>
-<div
-<% if controller_name != 'welcome' %>
-	class="container">
-<% else %>
-	>
-<% end %>
-	<%= yield %>
-</div>
+	<%= render partial: 'layouts/navigation' %>
+	<div
+	<% if controller_name != 'welcome' %>
+		class="container">
+	<% else %>
+		>
+	<% end %>
+		<%= flash_messages %>
+		<%= yield %>
+	</div>
 
 </body>
 </html>
