@@ -1,16 +1,16 @@
 class MonthlyReportsController < ApplicationController
 
 	before_action :set_report, only: [:edit, :update, :destroy]
-	before_action :set_deal
+	before_action :set_property
 
 	def new
-		@report = @deal.monthly_reports.new
+		@report = @property.monthly_reports.new
 	end
 
 	def create
-		@report = @deal.monthly_reports.new monthly_report_params
+		@report = @property.monthly_reports.new monthly_report_params
 		if @report.save
-			redirect_to deal_path(@deal), notice: 'monthly report was created'
+			redirect_to property_path(@property), notice: 'monthly report was created'
 		else
 			render :new
 		end
@@ -21,7 +21,7 @@ class MonthlyReportsController < ApplicationController
 
 	def update
 		if @report.update monthly_report_params 
-			redirect_to deal_path(@deal), notice: 'monthly report was updated'
+			redirect_to property_path(@property), notice: 'monthly report was updated'
 		else
 			render :edit
 		end
@@ -29,7 +29,7 @@ class MonthlyReportsController < ApplicationController
 
 	def destroy
 		@report.destroy
-		redirect_to deal_path(@deal), notice: 'report was deleted'
+		redirect_to property_path(@property), notice: 'report was deleted'
 	end
 
 	private
@@ -38,8 +38,8 @@ class MonthlyReportsController < ApplicationController
 		@report = MonthlyReport.find params[:id]
 	end
 
-	def set_deal
-		@deal = Deal.find params[:deal_id]
+	def set_property
+		@property = Property.find params[:property_id]
 	end
 
 	def monthly_report_params

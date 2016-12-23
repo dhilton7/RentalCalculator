@@ -1,7 +1,7 @@
 class MonthlyReport < ActiveRecord::Base
 
 	# Active Record relations
-	belongs_to :deal
+	belongs_to :property
 	has_many :income_items, dependent: :destroy
 	has_many :expense_items, dependent: :destroy
 	

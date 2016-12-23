@@ -1,16 +1,16 @@
 class LinksController < ApplicationController
 
-	before_action :set_deal
+	before_action :set_property
 	before_action :set_link, only: [:edit, :update, :destroy]
 
 	def new
-		@link = @deal.links.new
+		@link = @property.links.new
 	end
 
 	def create
-		link = @deal.links.new link_params
+		link = @property.links.new link_params
 		if link.save
-			redirect_to deal_path(@deal), notice: "New link created"
+			redirect_to property_path(@property), notice: "New link created"
 		else
 			render :new, notice: 'Link could not be created'
 		end
@@ -21,7 +21,7 @@ class LinksController < ApplicationController
 
 	def update
 		if @link.update link_params
-			redirect_to deal_path(@deal), notice: "Link updated"
+			redirect_to property_path(@property), notice: "Link updated"
 		else
 			render :edit
 		end
@@ -29,7 +29,7 @@ class LinksController < ApplicationController
 
 	def destroy
 		@link.destroy
-		redirect_to deal_path(@deal)
+		redirect_to property_path(@property)
 	end
 
 	private
@@ -38,8 +38,8 @@ class LinksController < ApplicationController
 		params.require(:link).permit(:name, :url)
 	end
 
-	def set_deal
-		@deal = Deal.find params[:deal_id]
+	def set_property
+		@property = Property.find params[:property_id]
 	end
 
 	def set_link

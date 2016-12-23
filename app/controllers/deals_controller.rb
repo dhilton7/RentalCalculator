@@ -1,7 +1,8 @@
 class DealsController < ApplicationController
 
 	before_action :authenticate_user!
-	before_action :set_deal, only: [:show, :edit, :update, :destroy, :activate]
+	before_action :set_property
+	before_action :set_deal, only: [:edit, :update, :destroy]
 
 	def new
 		@deal = Deal.new
@@ -9,20 +10,12 @@ class DealsController < ApplicationController
 	end
 
 	def create
-		@deal = Deal.new deal_params
+		@deal = @property.build_deal deal_params
 		if @deal.save
-			redirect_to deal_path(@deal)
+			redirect_to property_path(@property), notice: "Analysis was created."
 		else
 			render :new
 		end
-	end
-
-	def show
-	end
-
-	def index
-		@q = current_user.deals.ransack(params[:q])
-		@deals = @q.result(distinct: true).paginate(page: params[:page])
 	end
 
 	def edit
@@ -30,7 +23,7 @@ class DealsController < ApplicationController
 
 	def update
 		if @deal.update deal_params
-			redirect_to deal_path(@deal)
+			redirect_to property_path(@property), notice: "Analysis was updated."
 		else
 			render :edit
 		end
@@ -38,16 +31,7 @@ class DealsController < ApplicationController
 
 	def destroy
 		@deal.destroy
-		redirect_to deals_path, notice: "Deal was successfully deleted."
-	end
-
-	def activate
-		@deal.update_attribute(:status, Deal::STATUSES[2])
-		redirect_to deal_path(@deal), notice: "Deal was updated to active"
-	end
-
-	def active
-		@deals = current_user.deals.active.paginate(page: params[:page])
+		redirect_to properties_path, notice: "Analysis was successfully deleted."
 	end
 
 	private
@@ -56,7 +40,11 @@ class DealsController < ApplicationController
 		@deal = Deal.find params[:id]
 	end
 
+	def set_property
+		@property = Property.find params[:property_id]
+	end
+
 	def deal_params
-		params.require(:deal).permit(:address, :city, :state, :zip, :purchase_price, :list_price, :arv, :closing_costs, :estimated_repairs, :gross_rent, :other_income, :electricity, :water_sewer, :pmi, :insurance, :property_tax, :other_expenses, :vacancy, :repairs_maintenance, :cap_ex, :property_management, :notes, :cash_purchase, loans_attributes: [:id, :amount, :down_payment, :points, :fees, :ammortization, :interest_rate, :interest_only, :_destroy], links_attributes: [:id, :name, :url, :_destroy])
+		params.require(:deal).permit(:purchase_price, :list_price, :arv, :closing_costs, :estimated_repairs, :gross_rent, :other_income, :electricity, :water_sewer, :pmi, :insurance, :property_tax, :other_expenses, :vacancy, :repairs_maintenance, :cap_ex, :property_management, :cash_purchase, loans_attributes: [:id, :amount, :down_payment, :points, :fees, :ammortization, :interest_rate, :interest_only, :_destroy])
 	end
 end

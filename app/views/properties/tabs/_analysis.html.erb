@@ -1,0 +1,127 @@
+<div class="section-header">
+	<h2>Analysis</h2>
+	<% if deal.nil? %>
+		<%= link_to "New Analysis", new_property_deal_path(@property), class: 'btn btn-primary' %>
+	<% else %>
+		<%= link_to "Edit Analysis", edit_property_deal_path(@property, deal), class: 'btn btn-warning' %>
+	<% end %>
+</div>
+<hr>
+<% if deal.present? %>
+<div class="row">
+	<div class="col-lg-2 col-md-2">
+		<label>Purchase Price:</label>
+	</div>
+	<div class="col-lg-2 col-md-2 text-right">
+		<%= number_to_currency(deal.purchase_price) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Monthly Income:</label><br/><%= number_to_currency(deal.total_income) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Monthly Expenses:</label><br/><%= number_to_currency(deal.total_expenses) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Monthly Cashflow:</label><br/><%= number_to_currency(deal.cash_flow) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Pro forma Cap Rate:</label><br/><%= "#{deal.pro_forma_cap_rate}%" %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-4 col-md-4">
+		<div>
+			<label>Closing Costs:</label><span class="pull-right"><%= number_to_currency(deal.closing_costs) %>
+		</div>
+		<div>
+			<label>Estimated Repairs:</label><span class="pull-right"><%= number_to_currency(deal.estimated_repairs) %></span>
+		</div>
+		<div>
+			<label>Total Project Cost:</label><span class="pull-right"><%= number_to_currency(deal.total_project_cost) %></span>
+		</div>
+		<div>
+			<label>After Repair Value:</label><span class="pull-right"><%= number_to_currency(deal.arv) %></span>
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>NOI:</label><br/><%= number_to_currency(deal.noi) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Total Cash Needed:</label><br/><%= number_to_currency(deal.total_cash_needed) %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Cash on Cash ROI:</label><br/><%= "#{deal.cash_on_cash_roi}%" %>
+	</div>
+	<div class="col-lg-2 col-md-2">
+		<label>Purchase Cap Rate:</label><br/><%= "#{deal.purchase_cap_rate}%" %>
+	</div>
+</div>
+<div class="row">
+	<% if !deal.cash_purchase? %>
+		<div class="col-lg-4 col-md-4">
+			<h4>Loan</h4>
+			<% deal.loans.each do |l| %>
+				<div>
+					<label>Down Payment:</label><span class="values pull-right"><%= number_to_currency(l.down_payment) %><br/></span>
+				</div>
+				<div>
+					<label>Loan Amount:</label><span class="pull-right"><%= number_to_currency(l.amount) %></span>
+				</div>
+				<div>
+					<label>Loan Points:</label><span class="pull-right"><%= number_to_currency(l.points_payment) %></span>
+				</div>
+				<div>
+					<label>Other Fees:</label><span class="pull-right"><%= number_to_currency(l.fees) %></span>
+				</div>
+				<div>
+					<label>Ammortized Over:</label><span class="pull-right"><%= "#{l.ammortization} Years" %></span>
+				</div>
+				<div>
+					<label>Monthly P&I:</label><span class="pull-right"><%= number_to_currency(l.monthly_payment) %></span>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+	<div class="col-lg-4 col-md-4">
+		<h4>Expenses</h4>
+		<div>
+			<label>Mortgage:</label><span class="pull-right"><%= number_to_currency(deal.mortgage_expenses) %></span>
+		</div>
+		<div>
+			<label>Insurance:</label><span class="pull-right"><%= number_to_currency(deal.insurance) %></span>
+		</div>
+		<div>
+			<label>Taxes:</label><span class="pull-right"><%= number_to_currency(deal.property_tax) %></span>
+		</div>
+		<div>
+			<label>Vacancy:</label><span class="pull-right"><%= number_to_currency(deal.vacancy_dollars) %></span>
+		</div>
+		<div>
+			<label>Repairs:</label><span class="pull-right"><%= number_to_currency(deal.repairs_dollars) %></span>
+		</div>		
+		<div>
+			<label>CapEx:</label><span class="pull-right"><%= number_to_currency(deal.cap_ex_dollars) %></span>
+		</div>
+		<div>
+			<label>Management:</label><span class="pull-right"><%= number_to_currency(deal.property_management_dollars) %></span>
+		</div>
+		<div>
+			<label>Operating Expenses:</label><span class="pull-right"><%= number_to_currency(deal.operating_expenses) %></span>
+		</div>
+	</div>
+	<div class="col-lg-4 col-md-4">
+		<div class="col-lg-12">
+			<h4>Income</h4>
+		</div>
+		<div class="col-lg-9 col-md-9 text-left">
+			<label>Rental Income:</label><br/>
+			<label>Other Income:</label>
+		</div>
+		<div class="col-lg-3 col-md-3 text-right">
+			<div class="values"><%= number_to_currency(deal.gross_rent) %></div>
+			<div class="values"><%= number_to_currency(deal.other_income) %></div>
+		</div>
+	</div>
+</div>
+<% end %>

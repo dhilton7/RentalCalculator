@@ -1,0 +1,45 @@
+<div class="header">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1><%= @property.address_string %></h1>
+			<% if @property.status != Property::STATUSES[2] %>
+				<%= link_to "Make Active", activate_property_path(@property), method: :put, class: 'btn btn-default btn-lg' %>
+			<% end %>
+		</div>
+	</div>
+	<% if @property.notes.present? %>
+		<div class="row">
+			<div class="col-lg-12">
+				<h4>Notes</h4>
+				<p><%= deal.notes %></p>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<ul class="nav nav-tabs">
+			<li  role="presentation" class="active"><a href="#analysis"  aria-controls="analysis" role="tab" data-toggle="tab">Analysis</a></li>
+			<li role="presentation"><a href="#links" aria-controls="links" role="tab" data-toggle="tab">Links</a></li>
+			<li role="presentation"><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Reports</a></li>
+			<li role="presentation"><a href="#images" aria-controls="images" role="tab" data-toggle="tab">Images</a></li>
+		</ul>
+	</div>
+	<div class="col-lg-12">
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="analysis">
+				<%= render partial: 'properties/tabs/analysis', locals: {deal:@property.deal} %>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="links">
+				<%= render partial: 'properties/tabs/links', locals: {property:@property} %>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="report">
+				<%= render partial: 'properties/tabs/report', locals: {property: @property} %>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="images">
+				<%= render partial: 'properties/tabs/images', locals: {property: @property} %>
+			</div>
+		</div>
+	</div>
+</div>

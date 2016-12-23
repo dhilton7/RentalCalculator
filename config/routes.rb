@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :deals do
+  resources :properties do
     put :activate, on: :member
     get :active, on: :collection
-    resources :monthly_reports
+    resources :monthly_reports, except: [:index]
     resources :links, except: [:show, :index]
+    resources :deals, except: [:show, :index]
   end
 
   get '/' => 'welcome#index'

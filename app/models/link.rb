@@ -1,7 +1,7 @@
 class Link < ActiveRecord::Base
 
 	# Active Record Relations
-	belongs_to :deal
+	belongs_to :property
 
 	
 end

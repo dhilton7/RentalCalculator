@@ -2,21 +2,9 @@ class Deal < ActiveRecord::Base
 
 	# Active Record relations
 	has_many :loans, dependent: :destroy
-	has_many :monthly_reports, dependent: :destroy
-	has_many :links, dependent: :destroy
-	belongs_to :user
+	belongs_to :property
 
 	accepts_nested_attributes_for :loans
-	accepts_nested_attributes_for :links
-
-	# Constants
-	STATUSES = ['prospect', 'closing', 'active', 'sold']
-
-	# Scopes
-	scope :active, -> { where(status: STATUSES[2])}
-
-	# Pagination Count
-	self.per_page = 10
 
 	# Model Functions
 	
@@ -98,11 +86,6 @@ class Deal < ActiveRecord::Base
 	# calculate Property Tax (P) & Insurance (i) per month
 	def p_i
 		insurance + property_tax
-	end
-
-	# return full address string
-	def address_string
-		"#{address} #{city}, #{state} #{zip}"
 	end
 
 end

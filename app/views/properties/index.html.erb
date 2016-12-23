@@ -1,0 +1,25 @@
+<div class="header">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1>Your Properties</h1>
+			<%= link_to "New Property", new_property_path, class: 'btn btn-primary btn-lg' %>
+		</div>
+	</div>
+</div>
+
+<%= search_form_for @q do |f| %>
+	<div class="row">
+		<div class="col-lg-4 col-md-4 form-group">
+			<%= f.label :address_cont %>
+			<%= f.search_field :address_cont, class: 'form-control' %>
+		</div>
+	</div>
+
+	<%= f.submit class: 'btn btn-default btn-md' %>
+<% end %>
+
+<div class="row">
+	<div class="col-lg-12">
+		<%= render partial: 'table', locals: {properties:@properties} %>
+	</div>
+</div>

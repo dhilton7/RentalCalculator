@@ -1,0 +1,21 @@
+<table class="table">
+	<thead>
+		<th>Address</th>
+		<th>Listing Price</th>
+		<th>Purchase Price</th>
+		<th>Cap Rate</th>
+		<th>Actions</th>
+	</thead>
+	<tbody>
+		<% properties.each do |property| %>
+		<tr>
+			<td><%= link_to property.address_string, property_path(property) %></td>
+			<td><%#= number_to_currency(property.deal.list_price) %></td>
+			<td><%#= number_to_currency(property.deal.purchase_price) %></td>
+			<td><%#= "#{properrty.deal.purchase_cap_rate}%" %></td>
+			<td><%= link_to "Edit", edit_property_path(property), class: 'btn btn-warning btn-sm'  %> <%= link_to "Delete", property_path(property), method: :delete, class: 'btn btn-danger btn-sm'  %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= will_paginate properties %>
