@@ -23,4 +23,8 @@ class Property < ActiveRecord::Base
 		"#{address} #{city}, #{state} #{zip}"
 	end
 
+	def active?
+		status == STATUSES[2]
+	end
+
 end
