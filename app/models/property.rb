@@ -6,6 +6,9 @@ class Property < ActiveRecord::Base
 	has_one :deal, dependent: :destroy
 	belongs_to :user
 
+	# Validations
+	validates :address, :city, :state, :zip, presence: true
+
 	# Pagination Count
 	self.per_page = 10
 
