@@ -7,6 +7,7 @@ body {
 	padding: 70px 40px 40px 40px;
 }
 
+
 /* PAGE HEADER */
 .header h1 {
 	display: inline;
@@ -90,6 +91,23 @@ body {
 	font-size: 6.5em;
 	text-align: center;
 }
+
+/* PROPERTY VIEWS */
+
+/*  REPORT TAB */
+.report-hero {
+	text-align: center;
+	padding: 20px 10px 40px 10px;
+}
+
+.report-hero label {
+	font-size: 2em;
+}
+
+.report-hero .value {
+	font-size: 1.6em;
+}
+
 
 /* OTHER */
 .values {

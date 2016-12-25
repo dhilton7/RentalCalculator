@@ -8,25 +8,57 @@
 </div>
 <hr>
 
-<table class="table">
-	<thead>
-	<tr>
-		<th>Report Month</th>
-		<th>Income</th>
-		<th>Expenses</th>
-		<th>Cash Flow</th>
-		<th></th>
-	</tr>
-	</thead>
-	<tbody>
-	<% property.monthly_reports.each do |report| %>
-		<tr>
-			<td><%= report.month_year %></td>
-			<td><%= number_to_currency(report.total_income) %></td>
-			<td><%= number_to_currency(report.total_expenses) %></td>
-			<td><%= number_to_currency(report.cash_flow) %></td>
-			<td><%= link_to "View", property_monthly_report_path(property, report), class: 'btn btn-sm btn-info' %> <%= link_to "Edit", edit_property_monthly_report_path(property, report), class: 'btn btn-warning btn-sm' %> <%= link_to "Delete", property_monthly_report_path(property, report), method: :delete, class: 'btn btn-danger btn-sm' %></td>
-		</tr>
-	<% end %>
-	</tbody>
-</table>
+<div class="row">
+	<div class="col-lg-4 report-hero">
+		<div>
+			<label>Total Cashflow</label>
+		</div>
+		<div class="value">
+			<%= number_to_currency(property.actual_cash_flow) %>
+		</div>
+	</div>
+	<div class="col-lg-4 report-hero">
+		<div>
+			<label>Total Expenses</label>
+		</div> 
+		<div class="value">
+			<%= number_to_currency(property.total_expenses) %>
+		</div>
+	</div>
+	<div class="col-lg-4 report-hero">
+		<div>
+			<label>Net Operating Income</label>
+		</div>
+		<div class="value">
+			<%# # TODO: Change to NOI  %>
+			<%= number_to_currency(property.actual_cash_flow) %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<table class="table">
+			<thead>
+			<tr>
+				<th>Report Month</th>
+				<th>Income</th>
+				<th>Expenses</th>
+				<th>Cash Flow</th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody>
+			<% property.monthly_reports.each do |report| %>
+				<tr>
+					<td><%= report.month_year %></td>
+					<td><%= number_to_currency(report.total_income) %></td>
+					<td><%= number_to_currency(report.total_expenses) %></td>
+					<td><%= number_to_currency(report.cash_flow) %></td>
+					<td><%= link_to "View", property_monthly_report_path(property, report), class: 'btn btn-sm btn-info' %> <%= link_to "Edit", edit_property_monthly_report_path(property, report), class: 'btn btn-warning btn-sm' %> <%= link_to "Delete", property_monthly_report_path(property, report), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
