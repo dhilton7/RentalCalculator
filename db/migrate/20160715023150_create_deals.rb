@@ -11,24 +11,24 @@ class CreateDeals < ActiveRecord::Migration
     end
     
     create_table :deals do |t|
-    	t.integer :purchase_price, null: false, default: 0
-      t.integer :list_price, null: false, default: 0
+    	t.integer :purchase_price, null: false
+      t.integer :list_price, null: false
       t.integer :sold_price, null: false, default: 0
-    	t.integer :arv, null: false, default: 0
-    	t.integer :closing_costs, null: false, default: 0
-    	t.integer :estimated_repairs, null: false, default: 0
-    	t.integer :gross_rent, null: false, default: 0
+    	t.integer :arv, null: false
+    	t.integer :closing_costs, null: false
+    	t.integer :estimated_repairs, null: false
+    	t.integer :gross_rent, null: false
     	t.integer :other_income, null: false, default: 0
     	t.integer :electricity, null: false, default: 0
     	t.integer :water_sewer, null: false, default: 0
     	t.decimal :pmi, precision: 10, scale: 2, null: false, default: 0
-    	t.decimal :insurance, precision: 10, scale: 2, null: false, default: 0
-    	t.decimal :property_tax, precision: 10, scale: 2, null: false, default: 0
+    	t.decimal :insurance, precision: 10, scale: 2, null: false
+    	t.decimal :property_tax, precision: 10, scale: 2, null: false
     	t.integer :other_expenses, null: false, default: 0
-    	t.integer :vacancy, null: false, default: 0
-    	t.integer :repairs_maintenance, null: false, default: 0
-    	t.integer :cap_ex, null: false, default: 0
-    	t.integer :property_management, null: false, default: 0
+    	t.integer :vacancy, null: false
+    	t.integer :repairs_maintenance, null: false
+    	t.integer :cap_ex, null: false
+    	t.integer :property_management, null: false
       t.boolean :cash_purchase, null: false, default: false
       t.references :property, index: true
       t.timestamps null: false

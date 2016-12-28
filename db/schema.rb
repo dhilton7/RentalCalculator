@@ -17,24 +17,24 @@ ActiveRecord::Schema.define(version: 20161216005705) do
   enable_extension "plpgsql"
 
   create_table "deals", force: :cascade do |t|
-    t.integer  "purchase_price",                               default: 0,     null: false
-    t.integer  "list_price",                                   default: 0,     null: false
+    t.integer  "purchase_price",                                               null: false
+    t.integer  "list_price",                                                   null: false
     t.integer  "sold_price",                                   default: 0,     null: false
-    t.integer  "arv",                                          default: 0,     null: false
-    t.integer  "closing_costs",                                default: 0,     null: false
-    t.integer  "estimated_repairs",                            default: 0,     null: false
-    t.integer  "gross_rent",                                   default: 0,     null: false
+    t.integer  "arv",                                                          null: false
+    t.integer  "closing_costs",                                                null: false
+    t.integer  "estimated_repairs",                                            null: false
+    t.integer  "gross_rent",                                                   null: false
     t.integer  "other_income",                                 default: 0,     null: false
     t.integer  "electricity",                                  default: 0,     null: false
     t.integer  "water_sewer",                                  default: 0,     null: false
     t.decimal  "pmi",                 precision: 10, scale: 2, default: 0.0,   null: false
-    t.decimal  "insurance",           precision: 10, scale: 2, default: 0.0,   null: false
-    t.decimal  "property_tax",        precision: 10, scale: 2, default: 0.0,   null: false
+    t.decimal  "insurance",           precision: 10, scale: 2,                 null: false
+    t.decimal  "property_tax",        precision: 10, scale: 2,                 null: false
     t.integer  "other_expenses",                               default: 0,     null: false
-    t.integer  "vacancy",                                      default: 0,     null: false
-    t.integer  "repairs_maintenance",                          default: 0,     null: false
-    t.integer  "cap_ex",                                       default: 0,     null: false
-    t.integer  "property_management",                          default: 0,     null: false
+    t.integer  "vacancy",                                                      null: false
+    t.integer  "repairs_maintenance",                                          null: false
+    t.integer  "cap_ex",                                                       null: false
+    t.integer  "property_management",                                          null: false
     t.boolean  "cash_purchase",                                default: false, null: false
     t.integer  "property_id"
     t.datetime "created_at",                                                   null: false
@@ -44,21 +44,21 @@ ActiveRecord::Schema.define(version: 20161216005705) do
   add_index "deals", ["property_id"], name: "index_deals_on_property_id", using: :btree
 
   create_table "expense_items", force: :cascade do |t|
-    t.string   "name",                          null: false
-    t.integer  "amount",            default: 0, null: false
+    t.string   "name",              null: false
+    t.integer  "amount",            null: false
     t.integer  "monthly_report_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "expense_items", ["monthly_report_id"], name: "index_expense_items_on_monthly_report_id", using: :btree
 
   create_table "income_items", force: :cascade do |t|
-    t.string   "name",                          null: false
-    t.integer  "amount",            default: 0, null: false
+    t.string   "name",              null: false
+    t.integer  "amount",            null: false
     t.integer  "monthly_report_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "income_items", ["monthly_report_id"], name: "index_income_items_on_monthly_report_id", using: :btree
@@ -74,12 +74,12 @@ ActiveRecord::Schema.define(version: 20161216005705) do
   add_index "links", ["property_id"], name: "index_links_on_property_id", using: :btree
 
   create_table "loans", force: :cascade do |t|
-    t.integer  "amount",                                default: 0,     null: false
-    t.integer  "down_payment",                          default: 0,     null: false
+    t.integer  "amount",                                                null: false
+    t.integer  "down_payment",                                          null: false
     t.integer  "points"
-    t.integer  "ammortization",                         default: 0,     null: false
+    t.integer  "ammortization",                                         null: false
     t.integer  "fees",                                  default: 0,     null: false
-    t.decimal  "interest_rate", precision: 4, scale: 2, default: 0.0,   null: false
+    t.decimal  "interest_rate", precision: 4, scale: 2,                 null: false
     t.boolean  "interest_only",                         default: false, null: false
     t.integer  "deal_id"
     t.datetime "created_at",                                            null: false
