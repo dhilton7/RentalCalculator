@@ -8,6 +8,9 @@ class MonthlyReport < ActiveRecord::Base
 	accepts_nested_attributes_for :income_items
 	accepts_nested_attributes_for :expense_items
 
+	# Validations
+	validates :month_year, presence: true
+
 	# Model functions
 
 	# Total income for the month

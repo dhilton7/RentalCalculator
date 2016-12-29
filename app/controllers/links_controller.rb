@@ -8,8 +8,8 @@ class LinksController < ApplicationController
 	end
 
 	def create
-		link = @property.links.new link_params
-		if link.save
+		@link = @property.links.new link_params
+		if @link.save
 			redirect_to property_path(@property), notice: "New link created"
 		else
 			render :new, notice: 'Link could not be created'

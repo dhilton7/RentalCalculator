@@ -3,6 +3,9 @@ class Loan < ActiveRecord::Base
 	# Active Record Relations
 	belongs_to :deal
 
+	# Validations
+	validates :amount, :down_payment, :ammortization, :fees, :interest_rate, :interest_only, presence: true
+
 	# Model Functions
 
 	# monthly payments with interest
