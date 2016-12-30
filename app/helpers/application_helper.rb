@@ -20,5 +20,9 @@ module ApplicationHelper
     end
     nil
   end
+
+  def resource_name
+    :user
+  end
 end
 

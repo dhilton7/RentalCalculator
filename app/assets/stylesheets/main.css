@@ -2,7 +2,10 @@ body {
 	background-color: #FFF5E9;
 }
 
-/* CONTAINER */
+/* 
+	CONTAINER 
+
+*/
 .container {
 	padding: 70px 40px 40px 40px;
 }
@@ -32,7 +35,10 @@ body {
 	float: right;
 }
 
-/* FORM */
+/* 
+	FORM 
+
+*/
 
 /* Submit section of forms */
 .btn-submit {
@@ -55,7 +61,10 @@ body {
 	padding-top: 15px;
 }
 
-/* NAVAIGATION */
+/* 
+	NAVAIGATION 
+
+*/
 
 .navbar a {
 	color: #000 !important;
@@ -75,26 +84,97 @@ body {
 	color:#1D1D1D !important;
 }
 
-/* LANDING HEADER */
+/* 
+	LANDING PAGE 
+
+*/
+
+/* banner */
 
 #hero {
-	padding: 240px 0px !important;
+	padding: 200px 0px;
 	background: image_url('hero.jpg') no-repeat center center;
 	background-size: cover;
 	width: 100%;
 	border-bottom: 2px solid #C9C9C9;
+	&:before {
+    	content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
+		opacity: .6; 
+  	}
 }
 
 .banner h1 {
 	color: #FFF;
 	/*font-family: 'Pacifico', cursive;*/
-	font-size: 6.5em;
+	font-size: 4em;
 	text-align: center;
+	margin-top: -70px;
 }
 
-/* PROPERTY VIEWS */
+.banner p {
+	text-align: center;
+	font-size: 2em;
+	color: #DDD;
+}
 
-/*  REPORT TAB */
+.banner .btn {
+	margin-top: 20px;
+	padding: 20px 70px;
+	background-color: white;
+	font-size: 1.2em;
+}
+
+/* about */
+
+.about {
+}
+
+.about p {
+	margin-left: 20%;
+	margin-right: 20%; 
+}
+
+.about h2 {
+	margin-top: -20px;
+	padding-bottom: 20px;
+}
+
+/* footer */
+
+.footer {
+	background-color: #242424;
+	text-align: center;
+	color:white;
+	padding: 10px 0px 20px 0px;
+}
+
+.footer .container {
+	margin-top: -50px;
+	margin-bottom: -20px;
+}
+
+.footer p {
+	font-size:0.9em;
+	color:#F2F2F2;
+	display: inline;
+	margin: 0px 10px 0px 20px;
+}
+
+.footer .fa {
+	padding-right: 5px;
+}
+/* 
+	PROPERTY VIEWS 
+
+*/
+
+/*  Report tab */
 .report-hero {
 	text-align: center;
 	padding: 20px 10px 40px 10px;
@@ -109,7 +189,10 @@ body {
 }
 
 
-/* OTHER */
+/* 
+	OTHER 
+
+*/
 .values {
 	padding-bottom: 5px;
 }

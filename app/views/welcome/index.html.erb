@@ -1,3 +1,55 @@
 <div class="banner" id="hero">
-	<h1>Welcome to Rental Calculator</h1>
+	<div class="row">
+		<div class="col-lg-12">
+			<h1>Introducing Finalysis</h1>
+			<p>Analyze potential rental properties. Track finances for active investments.</p>
+		</div>
+		<div class="col-lg-12 text-center">
+			<%= link_to "Sign Up Now", new_registration_path(resource_name), class: 'btn' %>
+		</div>
+	</div>
 </div>
+
+<div class="about">
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-lg-12">
+				<h2>About Finalysis</h2>
+			</div>
+			<div class="col-lg-4">
+				<%= image_tag("calculator.png", size: "200") %>
+				<h4>Analyze</h4>
+				<p>
+					Create properties and run analyses on them to see if you have a good deal on your hands. Export analysis to Excel.
+				</p>
+			</div>
+			<div class="col-lg-4">
+				<%= image_tag("spreadsheet.png", size: "200") %>
+				<h4>Track</h4>
+				<p>
+					Track the finances of your property with ease. Create monthly reports with income and expenses. View the cash flow for your properties. Export to Excel for reporting.
+				</p>
+			</div>
+			<div class="col-lg-4">
+				<%= image_tag("idea.png", size: "200") %>
+				<h4>Simplify</h4>
+				<p>
+					Compare your analysis with actual finances to make sure you are accurately forecasting returns. Know the right price to make the return you want.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+  <!-- FOOTER -->
+<div class="footer">
+	<div class="container">
+  		<div class="row">
+  			<div class="col-lg-12 text-center">
+      			<p>&copy; 2016 Finalysis</p>
+      			<p><i class="fa fa-envelope-o" aria-hidden="true"></i>email@email.com</p>
+  			</div>
+  		</div>
+  	</div>
+</div>
+  <!-- END FOOTER -->
