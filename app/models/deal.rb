@@ -7,7 +7,7 @@ class Deal < ActiveRecord::Base
 	accepts_nested_attributes_for :loans
 
 	# Validations
-	validates :purchase_price, :list_price, :arv, :closing_costs, :estimated_repairs, :gross_rent, :other_income, :electricity, :water_sewer, :pmi, :insurance, :property_tax, :other_expenses, :vacancy, :repairs_maintenance, :cap_ex, :property_management, :cash_purchase, presence: true
+	validates :purchase_price, :list_price, :arv, :closing_costs, :estimated_repairs, :gross_rent, :other_income, :electricity, :water_sewer, :pmi, :insurance, :property_tax, :other_expenses, :vacancy, :repairs_maintenance, :cap_ex, :property_management, presence: true
 
 	# Model Functions
 	

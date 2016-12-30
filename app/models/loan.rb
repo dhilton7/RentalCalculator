@@ -4,15 +4,19 @@ class Loan < ActiveRecord::Base
 	belongs_to :deal
 
 	# Validations
-	validates :amount, :down_payment, :ammortization, :fees, :interest_rate, :interest_only, presence: true
+	validates :amount, :down_payment, :ammortization, :fees, :interest_rate, presence: true
 
 	# Model Functions
 
 	# monthly payments with interest
 	def monthly_payment
 		c = monthly_interest
-		n = total_payments
-		(amount * ((c * ((1 + c)**n)) / (((1 + c)**n) - 1))).round(2)
+		if interest_only?
+			c * amount
+		else
+			n = total_payments
+			(amount * ((c * ((1 + c)**n)) / (((1 + c)**n) - 1))).round(2)
+		end
 	end
 
 	# calculate monthly interest rate
