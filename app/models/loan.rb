@@ -31,7 +31,7 @@ class Loan < ActiveRecord::Base
 
 	# calculate payment for points
 	def points_payment
-		points * amount / 100
+		(points || 0) * amount / 100
 	end
 
 end

@@ -45,6 +45,6 @@ class DealsController < ApplicationController
 	end
 
 	def deal_params
-		params.require(:deal).permit(:purchase_price, :list_price, :arv, :closing_costs, :estimated_repairs, :gross_rent, :other_income, :electricity, :water_sewer, :pmi, :insurance, :property_tax, :other_expenses, :vacancy, :repairs_maintenance, :cap_ex, :property_management, :cash_purchase, loans_attributes: [:id, :amount, :down_payment, :points, :fees, :ammortization, :interest_rate, :interest_only, :_destroy])
+		params.require(:deal).permit(:purchase_price, :list_price, :arv, :closing_costs, :estimated_repairs, :cap_rate, :gross_rent, :other_income, :electricity, :water_sewer, :pmi, :insurance, :property_tax, :other_expenses, :vacancy, :repairs_maintenance, :cap_ex, :property_management, :cash_purchase, loans_attributes: [:id, :amount, :down_payment, :points, :fees, :ammortization, :interest_rate, :interest_only, :_destroy])
 	end
 end

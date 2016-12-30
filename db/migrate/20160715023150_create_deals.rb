@@ -17,6 +17,7 @@ class CreateDeals < ActiveRecord::Migration
     	t.integer :arv, null: false
     	t.integer :closing_costs, null: false
     	t.integer :estimated_repairs, null: false
+      t.integer :cap_rate, null: false
     	t.integer :gross_rent, null: false
     	t.integer :other_income, null: false, default: 0
     	t.integer :electricity, null: false, default: 0
@@ -31,6 +32,18 @@ class CreateDeals < ActiveRecord::Migration
     	t.integer :property_management, null: false
       t.boolean :cash_purchase, null: false, default: false
       t.references :property, index: true
+      t.timestamps null: false
+    end
+
+    create_table :loans do |t|
+      t.integer :amount, null: false
+      t.integer :down_payment, null: false
+      t.integer :points, null: true
+      t.integer :ammortization, null: false
+      t.integer :fees, null: false, default: 0
+      t.decimal :interest_rate, precision: 4, scale: 2, null: false
+      t.boolean :interest_only, null: false, default: false
+      t.references :deal, index: true
       t.timestamps null: false
     end
   end

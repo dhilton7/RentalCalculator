@@ -30,7 +30,7 @@
 		<label>Monthly Cashflow:</label><br/><%= number_to_currency(deal.cash_flow) %>
 	</div>
 	<div class="col-lg-2 col-md-2">
-		<label>Pro forma Cap Rate:</label><br/><%= "#{deal.pro_forma_cap_rate}%" %>
+		<label>Purchase Cap Rate:</label><br/><%= "#{deal.purchase_cap_rate}%" %>
 	</div>
 </div>
 
@@ -59,7 +59,7 @@
 		<label>Cash on Cash ROI:</label><br/><%= "#{deal.cash_on_cash_roi}%" %>
 	</div>
 	<div class="col-lg-2 col-md-2">
-		<label>Purchase Cap Rate:</label><br/><%= "#{deal.purchase_cap_rate}%" %>
+		<label>Market Value:</label><br/><%= number_to_currency(deal.market_value) %>
 	</div>
 </div>
 <div class="row">

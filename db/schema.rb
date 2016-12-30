@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216005705) do
+ActiveRecord::Schema.define(version: 20161214214706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20161216005705) do
     t.integer  "arv",                                                          null: false
     t.integer  "closing_costs",                                                null: false
     t.integer  "estimated_repairs",                                            null: false
+    t.integer  "cap_rate",                                                     null: false
     t.integer  "gross_rent",                                                   null: false
     t.integer  "other_income",                                 default: 0,     null: false
     t.integer  "electricity",                                  default: 0,     null: false

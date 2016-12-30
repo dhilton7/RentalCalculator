@@ -12,14 +12,17 @@
 			<div class="col-lg-6 form-group">
 				<%= f.input :list_price, label: "List Price", input_html: {class: 'form-control'} %>
 			</div>
-			<div class="col-lg-4 form-group">
+			<div class="col-lg-6 form-group">
 				<%= f.input :arv, label: "After Repair Value (ARV)", input_html: {class: 'form-control'} %>
 			</div>
-			<div class="col-lg-4 form-group">
+			<div class="col-lg-6 form-group">
 				<%= f.input :closing_costs, label: "Closing Costs", input_html: {class: 'form-control'} %>
 			</div>
-			<div class="col-lg-4 form-group">
+			<div class="col-lg-6 form-group">
 				<%= f.input :estimated_repairs, label: "Estimated Repair Cost", input_html: {class: 'form-control'} %>
+			</div>
+			<div class="col-lg-6 form-group">
+				<%=  f.input :cap_rate, label: "Expected Cap Rate", input_html: {class: 'form-control'} %>
 			</div>
 		</div>
 	</div>

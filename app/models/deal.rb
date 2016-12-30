@@ -7,7 +7,18 @@ class Deal < ActiveRecord::Base
 	accepts_nested_attributes_for :loans
 
 	# Validations
-	validates :purchase_price, :list_price, :arv, :closing_costs, :estimated_repairs, :gross_rent, :other_income, :electricity, :water_sewer, :pmi, :insurance, :property_tax, :other_expenses, :vacancy, :repairs_maintenance, :cap_ex, :property_management, presence: true
+	validates :purchase_price, :list_price, :arv, :closing_costs, :cap_rate, :estimated_repairs, :gross_rent, :other_income, :electricity, :water_sewer, :pmi, :insurance, :property_tax, :other_expenses, :vacancy, :repairs_maintenance, :cap_ex, :property_management, presence: true
+
+	# Custom Getters & Setters
+
+	# Store cap rate as integer (allow 1 decimal place)
+	def cap_rate=(val)
+		super val.to_f * 10
+	end
+
+	def cap_rate
+		super.nil? ? nil : super.to_i / 10.0
+	end
 
 	# Model Functions
 	
@@ -89,6 +100,11 @@ class Deal < ActiveRecord::Base
 	# calculate Property Tax (P) & Insurance (i) per month
 	def p_i
 		insurance + property_tax
+	end
+
+	# caluclate market value based on NOI and Cap Rate
+	def market_value
+		noi / (cap_rate / 100.0)
 	end
 
 end
