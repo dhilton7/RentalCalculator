@@ -17,29 +17,34 @@
 	<% end %>
 </div>
 
-<div class="row">
-	<div class="col-lg-12">
-		<ul class="nav nav-tabs">
-			<li  role="presentation" <%= "class=active" if !@property.active? %>><a href="#analysis"  aria-controls="analysis" role="tab" data-toggle="tab">Analysis</a></li>
-			<li role="presentation"><a href="#links" aria-controls="links" role="tab" data-toggle="tab">Links</a></li>
-			<li role="presentation" <%= "class=active" if @property.active? %>><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Reports</a></li>
-			<li role="presentation"><a href="#images" aria-controls="images" role="tab" data-toggle="tab">Images</a></li>
-		</ul>
-	</div>
-	<div class="col-lg-12">
-		<div class="tab-content">
-			<div role="tabpanel" class="tab-pane <%= 'active' if !@property.active? %>" id="analysis">
-				<%= render partial: 'properties/tabs/analysis', locals: {deal:@property.deal} %>
-			</div>
-			<div role="tabpanel" class="tab-pane" id="links">
-				<%= render partial: 'properties/tabs/links', locals: {property:@property} %>
-			</div>
-			<div role="tabpanel" class="tab-pane <%= 'active' if @property.active? %>" id="report">
-				<%= render partial: 'properties/tabs/report', locals: {property: @property} %>
-			</div>
-			<div role="tabpanel" class="tab-pane" id="images">
-				<%= render partial: 'properties/tabs/images', locals: {property: @property} %>
+<% if @property.active? %>
+	<div class="row">
+		<div class="col-lg-12">
+			<ul class="nav nav-tabs">
+				<li role="presentation" class="active" ><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Reports</a></li>
+				<li role="presentation"><a href="#links" aria-controls="links" role="tab" data-toggle="tab">Links</a></li>
+				<li role="presentation"><a href="#images" aria-controls="images" role="tab" data-toggle="tab">Images</a></li>
+				<li  role="presentation"><a href="#analysis"  aria-controls="
+				analysis" role="tab" data-toggle="tab">Analysis</a></li>
+			</ul>
+		</div>
+		<div class="col-lg-12">
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="report">
+					<%= render partial: 'properties/tabs/report', locals: {property: @property} %>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="links">
+					<%= render partial: 'properties/tabs/links', locals: {property:@property} %>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="images">
+					<%= render partial: 'properties/tabs/images', locals: {property: @property} %>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="analysis">
+					<%= render partial: 'properties/tabs/analysis', locals: {deal:@property.deal} %>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+<% else %>
+	<%= render partial: 'deals/show', locals: {deal: @property.deal} %>
+<% end %>

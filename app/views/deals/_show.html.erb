@@ -1,0 +1,79 @@
+<div class="section-header">
+	<div class="row">
+		<div class="col-lg-12">
+			<h2>Analysis</h2>
+		</div>
+	</div>
+</div>
+
+<% if deal.present? %>
+
+	<div class="row">
+		<div class="col-lg-3">
+			<div>
+				<label>Monthly Income</label>
+			</div>
+			<div class="values">
+				<%= number_to_currency(deal.total_income) %>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div>
+				<label>Monthly Expenses</label>
+			</div>
+			<div class="values">
+				<%= number_to_currency(deal.total_expenses) %>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div>
+				<label>Monthly Cashflow</label>
+			</div>
+			<div class="values">
+				<%= number_to_currency(deal.cash_flow) %>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div>
+				<label>Purchase Cap Rate</label>
+			</div>
+			<div class="values">
+				<%= "#{deal.purchase_cap_rate}%" %>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3">
+			<div>
+				<label>NOI</label>
+			</div>
+			<div class="values">
+				<%= number_to_currency(deal.noi) %>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div>
+				<label>Total Cash Needed</label>
+			</div>
+			<div class="values">
+				<%= number_to_currency(deal.total_cash_needed) %>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div>
+				<label>Cash on Cash ROI</label>
+			</div>
+			<div class="values">
+				<%= "#{deal.cash_on_cash_roi}%" %>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div>
+				<label>Market Value</label>
+			</div>
+			<div class="values">
+				<%= number_to_currency(deal.market_value) %>
+			</div>
+		</div>
+	</div>
+<% end %>
