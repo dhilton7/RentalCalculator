@@ -1,5 +1,5 @@
 body {
-	background-color: #FFF5E9;
+	background-color: #F7F7F2;
 }
 
 /* 
@@ -178,6 +178,43 @@ body {
 	font-size: 1.6em;
 }
 
+/* Deal Views */
+
+.top-display {
+	border-radius: 20px;
+	background-color: #235789;
+
+}
+
+.top-display label {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 20px 25px 0px 25px;
+	font-size: 1.5em;
+}
+
+.top-display p {
+	text-align: center;
+	font-size: 2em;
+	color: #EE964B;
+	padding-bottom: 15px;
+}
+
+.loan-analysis {
+	background-color: black;
+}
+
+.loan-analysis label {
+	color: white;
+	text-align: left;
+	font-size: 1.3em;
+}
+
+.loan-analysis span {
+	font-size: 1.3em;
+	float: right;
+}
 
 /* 
 	OTHER 

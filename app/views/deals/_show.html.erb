@@ -9,70 +9,54 @@
 <% if deal.present? %>
 
 	<div class="row">
-		<div class="col-lg-3">
-			<div>
+		<div class="col-lg-3 col-md-3">
+			<div class="top-display">
 				<label>Monthly Income</label>
-			</div>
-			<div class="values">
-				<%= number_to_currency(deal.total_income) %>
+				<p><%= number_to_currency(deal.total_income) %></p>
 			</div>
 		</div>
-		<div class="col-lg-3">
-			<div>
+		<div class="col-lg-3 col-md-3">
+			<div class="top-display">
 				<label>Monthly Expenses</label>
-			</div>
-			<div class="values">
-				<%= number_to_currency(deal.total_expenses) %>
+				<p><%= number_to_currency(deal.total_expenses) %></p>
 			</div>
 		</div>
-		<div class="col-lg-3">
-			<div>
+		<div class="col-lg-3 col-md-3">
+			<div class="top-display">
 				<label>Monthly Cashflow</label>
-			</div>
-			<div class="values">
-				<%= number_to_currency(deal.cash_flow) %>
+				<p><%= number_to_currency(deal.cash_flow) %></p>
 			</div>
 		</div>
-		<div class="col-lg-3">
-			<div>
+		<div class="col-lg-3 col-md-3">
+			<div class="top-display">
 				<label>Purchase Cap Rate</label>
-			</div>
-			<div class="values">
-				<%= "#{deal.purchase_cap_rate}%" %>
+				<p><%= "#{deal.purchase_cap_rate}%" %></p>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-3">
-			<div>
+		<div class="col-lg-3 col-md-3">
+			<div class="top-display">
 				<label>NOI</label>
-			</div>
-			<div class="values">
-				<%= number_to_currency(deal.noi) %>
+				<p><%= number_to_currency(deal.noi) %></p>
 			</div>
 		</div>
-		<div class="col-lg-3">
-			<div>
+		<div class="col-lg-3 col-md-3">
+			<div class="top-display">
 				<label>Total Cash Needed</label>
-			</div>
-			<div class="values">
-				<%= number_to_currency(deal.total_cash_needed) %>
+				<p><%= number_to_currency(deal.total_cash_needed) %></p>
 			</div>
 		</div>
-		<div class="col-lg-3">
-			<div>
+		<div class="col-lg-3 col-md-3">
+			<div class="top-display">
 				<label>Cash on Cash ROI</label>
-			</div>
-			<div class="values">
-				<%= "#{deal.cash_on_cash_roi}%" %>
+				<p><%= "#{deal.cash_on_cash_roi}%" %></p>
 			</div>
 		</div>
-		<div class="col-lg-3">
-			<div>
+		<div class="col-lg-3 col-md-3">
+			<div class="top-display">
 				<label>Market Value</label>
-			</div>
-			<div class="values">
-				<%= number_to_currency(deal.market_value) %>
+				<p><%= number_to_currency(deal.market_value) %></p>
 			</div>
 		</div>
 	</div>
