@@ -9,29 +9,23 @@
 <hr>
 
 <div class="row">
-	<div class="col-lg-4 report-hero">
-		<div>
+	<div class="col-lg-4">
+		<div class="top-display">
 			<label>Total Cashflow</label>
-		</div>
-		<div class="value">
-			<%= number_to_currency(property.actual_cash_flow) %>
+			<p><%= number_to_currency(property.actual_cash_flow) %></p>
 		</div>
 	</div>
-	<div class="col-lg-4 report-hero">
-		<div>
+	<div class="col-lg-4">
+		<div class="top-display">
 			<label>Total Expenses</label>
-		</div> 
-		<div class="value">
-			<%= number_to_currency(property.total_expenses) %>
+			<p><%= number_to_currency(property.total_expenses) %></p>
 		</div>
 	</div>
 	<div class="col-lg-4 report-hero">
-		<div>
+		<div class="top-display">
 			<label>Net Operating Income</label>
-		</div>
-		<div class="value">
 			<%# # TODO: Change to NOI  %>
-			<%= number_to_currency(property.actual_cash_flow) %>
+			<p><%= number_to_currency(property.actual_cash_flow) %></p>
 		</div>
 	</div>
 </div>

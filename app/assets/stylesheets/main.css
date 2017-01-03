@@ -12,8 +12,13 @@ body {
 
 
 /* PAGE HEADER */
+.header {
+	padding-bottom: 15px;
+}
+
 .header h1 {
 	display: inline;
+	color: #001242;
 }
 
 .header .btn {
@@ -28,6 +33,7 @@ body {
 
 .section-header h2 {
 	display: inline;
+	color: #00A676;
 }
 
 .section-header .btn {
@@ -122,9 +128,6 @@ body {
 
 /* about */
 
-.about {
-}
-
 .about p {
 	margin-left: 20%;
 	margin-right: 20%; 
@@ -163,20 +166,6 @@ body {
 	PROPERTY VIEWS 
 
 */
-
-/*  Report tab */
-.report-hero {
-	text-align: center;
-	padding: 20px 10px 40px 10px;
-}
-
-.report-hero label {
-	font-size: 2em;
-}
-
-.report-hero .value {
-	font-size: 1.6em;
-}
 
 /* Deal Views */
 
@@ -220,7 +209,3 @@ body {
 	OTHER 
 
 */
-.values {
-	padding-bottom: 5px;
-}
-
