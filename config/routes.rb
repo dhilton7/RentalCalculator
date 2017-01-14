@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   resources :properties do
     put :activate, on: :member
     get :active, on: :collection
-    resources :monthly_reports, except: [:index], :path => "reports"
     resources :links, except: [:show, :index]
     resources :deals, except: [:show, :index]
+  end
+
+  resources :sheets do, :path => "reports"
+    resources :entries
   end
 
   get '/' => 'welcome#index'

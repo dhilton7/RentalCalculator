@@ -6,5 +6,4 @@ class Sheet < ActiveRecord::Base
 	has_many :entries
 
 
-
 end

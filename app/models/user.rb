@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
 
   # Active Record Relations
   has_many :properties, dependent: :destroy
+  has_many :sheets, dependent: :destroy
 
 end
