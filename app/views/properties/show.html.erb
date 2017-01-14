@@ -1,7 +1,7 @@
 <div class="header">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1><%= @property.address_string %></h1>
+			<h1><%= @property %></h1>
 			<% if @property.status != Property::STATUSES[2] %>
 				<%= link_to "Make Active", activate_property_path(@property), method: :put, class: 'btn btn-default btn-lg' %>
 			<% end %>
@@ -31,7 +31,7 @@
 		<div class="col-lg-12">
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="report">
-					<%= render partial: 'properties/tabs/report', locals: {property: @property} %>
+					<%#= render partial: 'properties/tabs/report', locals: {property: @property} %>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="links">
 					<%= render partial: 'properties/tabs/links', locals: {property:@property} %>

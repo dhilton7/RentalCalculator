@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :deals, except: [:show, :index]
   end
 
-  resources :sheets do, :path => "reports"
+  resources :sheets, :path => "reports" do
     resources :entries
   end
 

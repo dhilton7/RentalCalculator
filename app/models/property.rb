@@ -18,11 +18,6 @@ class Property < ActiveRecord::Base
 	# Scopes
 	scope :active, -> { where(status: STATUSES[2])}
 
-	# return full address string
-	def address_string
-		"#{address} #{city}, #{state} #{zip}"
-	end
-
 	# return true if property is active investment
 	def active?
 		status == STATUSES[2]
@@ -39,6 +34,10 @@ class Property < ActiveRecord::Base
 
 	def total_income
 		monthly_reports.map(&:total_income).reduce(:+) || 0
+	end
+
+	def to_s
+		"#{address} #{city}, #{state} #{zip}"
 	end
 
 end

@@ -9,7 +9,7 @@
 	<tbody>
 		<% properties.each do |property| %>
 		<tr>
-			<td><%= link_to property.address_string, property_path(property) %></td>
+			<td><%= link_to property, property_path(property) %></td>
 			<td><%#= number_to_currency(property.deal.list_price) %></td>
 			<td><%#= number_to_currency(property.deal.purchase_price) %></td>
 			<td><%#= "#{properrty.deal.purchase_cap_rate}%" %></td>

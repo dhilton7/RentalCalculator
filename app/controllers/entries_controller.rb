@@ -8,7 +8,7 @@ class EntriesController < ApplicationController
 	end
 
 	def create
-		@entry = Entry.new entry_params
+		@entry = @sheet.entries.create entry_params
 		if @entry.save
 			redirect_to sheet_path(@sheet), notice: 'entry saved.'
 		else
@@ -32,7 +32,7 @@ class EntriesController < ApplicationController
 	private
 
 	def entry_params
-		params.require(:entry).permit(:amount, :account, :description, :dat, :property_id, :entry_category_id)
+		params.require(:entry).permit(:amount, :account, :description, :date, :property_id, :entry_category_id)
 	end
 
 	def set_entry

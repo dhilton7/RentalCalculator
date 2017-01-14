@@ -35,7 +35,7 @@ class SheetsController < ApplicationController
 	end
 
 	def set_sheet
-		@sheet = Entry.find params[:id]
+		@sheet = Sheet.find params[:id]
 	end
 
 end

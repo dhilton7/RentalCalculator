@@ -1,0 +1,32 @@
+<%= simple_form_for([@sheet, @entry]) do |f| %>
+
+	<%= f.input :amount %>
+	<%= f.input :account %>
+	<%= f.input :description %>
+	<%= f.input :date, 
+				label: "Report Month", 
+				as: :string, 
+				input_html: {class: 'form-control datepicker'} 
+	%>
+	<%= f.association :property, 
+				collection: current_user.properties.active.order(:address).map { |p| [p.address, p.id] }, 
+				prompt: 'Choose a property' 
+	%>
+	<%= f.association :entry_category ,
+				collection: EntryCategory.all.order(:name),
+				prompt: 'Choose a Category'
+	%>
+
+	<%= f.submit 'Save Entry', class: 'btn btn-primary' %>
+
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('.datepicker').datepicker({
+			format: "mm/dd/yyyy",
+			orientation: 'bottom'
+		});
+	});
+</script>
