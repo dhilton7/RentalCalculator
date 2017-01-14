@@ -45,10 +45,6 @@ class PropertiesController < ApplicationController
 		redirect_to property_path(@property), notice: "Property is now active."
 	end
 
-	def active
-		@properties = current_user.properties.active.paginate(page: params[:page])
-	end
-
 	private
 
 	def set_property

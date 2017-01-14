@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :properties do
     put :activate, on: :member
-    get :active, on: :collection
     resources :links, except: [:show, :index]
     resources :deals, except: [:show, :index]
   end

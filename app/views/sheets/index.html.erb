@@ -1,0 +1,27 @@
+<div class="row">
+	<h1>My Reports</h1>
+	<%= link_to "New Sheet" %>
+</div>
+
+<div class="row">
+	<table class="table">
+	<thead>
+		<tr>
+			<th>Report Name</th>
+			<th>Date Created</th>
+			<th>Last Update</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+	<% current_user.sheets.each do |s| %>
+		<tr>
+			<td><%= s.title %></td>
+			<td><%= s.created_at.strftime("%m/%d/%Y") %></td>
+			<td><%#= s.updated_at.strftime("%m/%d/%Y") %></td>
+			<td><%= link_to "View", sheet_path(s), class: 'btn btn-default' %></td>
+		</tr>
+	<% end %>
+	</tbody>
+	</table>
+</div>
