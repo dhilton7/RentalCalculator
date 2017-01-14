@@ -23,19 +23,6 @@ class Property < ActiveRecord::Base
 		status == STATUSES[2]
 	end
 
-	# return total cash flow
-	def actual_cash_flow
-		total_income - total_expenses
-	end
-
-	def total_expenses
-		monthly_reports.map(&:total_expenses).reduce(:+) || 0
-	end
-
-	def total_income
-		monthly_reports.map(&:total_income).reduce(:+) || 0
-	end
-
 	def to_s
 		"#{address} #{city}, #{state} #{zip}"
 	end

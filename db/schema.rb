@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20170114022056) do
 
   create_table "entry_categories", force: :cascade do |t|
     t.string   "name",       null: false
+    t.boolean  "debt"
+    t.boolean  "operating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,6 +1,28 @@
-<h1><%= @sheet.title %></h1>
-<%= link_to "New Entry", new_sheet_entry_path(@sheet), class: 'btn btn-primary' %>
+<div class="row">
+	<h1><%= @sheet.title %></h1>
+	<%= link_to "New Entry", new_sheet_entry_path(@sheet), class: 'btn btn-primary' %>
+</div>
 
+<div class="row">
+	<div class="col-lg-4">
+		<div class="top-display">
+			<label>Total Cashflow</label>
+			<p><%= number_to_currency(@sheet.cash_flow) %></p>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="top-display">
+			<label>Total Expenses</label>
+			<p><%= number_to_currency(@sheet.total_debt) %></p>
+		</div>
+	</div>
+	<div class="col-lg-4 report-hero">
+		<div class="top-display">
+			<label>Net Operating Income</label>
+			<p><%= number_to_currency(@sheet.noi) %></p>
+		</div>
+	</div>
+</div>
 <table class="table">
 <thead>
 	<tr>
