@@ -1,6 +1,19 @@
 <div class="row">
-	<h1>My Reports</h1>
-	<%= link_to "New Sheet" %>
+	<div class="col-lg-6 col-md-6">
+		<h1>My Reports</h1>
+	</div>
+	<div class="col-lg-6 col-md-6">
+		<div class="pull-right">
+			<%= button_tag("New Sheet", class: 'btn btn-primary', id: 'new-sheet-button') %>
+			<div id="sheet-form">
+				<%= simple_form_for(:sheet) do |f| %>
+					<%= f.input :title %>
+					<%= f.submit "Create", class: 'btn btn-primary' %>
+					<%= button_tag("Cancel", id: 'cancel-sheet-button') %>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="row">
@@ -25,3 +38,25 @@
 	</tbody>
 	</table>
 </div>
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		showForm(false);
+
+		$('#new-sheet-button').on('click', function(event) {
+			showForm(true);
+		});
+
+		$('#cancel-sheet-button').on('click', function(event) {
+			event.preventDefault();
+			showForm(false);
+		});
+
+		function showForm(on) {
+			$('#sheet-form').toggle(on);
+			$('#new-sheet-button').toggle(!on)
+		}
+	});
+
+</script>
