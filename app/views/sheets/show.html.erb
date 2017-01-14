@@ -16,7 +16,7 @@
 <% @sheet.entries.each do |entry| %>
 	<tr>
 		<td><%= entry.date.strftime("%m/%d/%Y") %></td>
-		<td><%= entry.amount %></td>
+		<td><%= number_to_currency(entry.amount) %></td>
 		<td><%= entry.account %></td>
 		<td><%= entry.property %></td>
 		<td><%= entry.entry_category %></td>
