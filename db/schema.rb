@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214214706) do
+ActiveRecord::Schema.define(version: 20170114022056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,25 +44,27 @@ ActiveRecord::Schema.define(version: 20161214214706) do
 
   add_index "deals", ["property_id"], name: "index_deals_on_property_id", using: :btree
 
-  create_table "expense_items", force: :cascade do |t|
-    t.string   "name",              null: false
+  create_table "entries", force: :cascade do |t|
     t.integer  "amount",            null: false
-    t.integer  "monthly_report_id"
+    t.string   "account",           null: false
+    t.string   "description"
+    t.date     "date"
+    t.integer  "property_id"
+    t.integer  "entry_category_id"
+    t.integer  "sheet_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
 
-  add_index "expense_items", ["monthly_report_id"], name: "index_expense_items_on_monthly_report_id", using: :btree
+  add_index "entries", ["entry_category_id"], name: "index_entries_on_entry_category_id", using: :btree
+  add_index "entries", ["property_id"], name: "index_entries_on_property_id", using: :btree
+  add_index "entries", ["sheet_id"], name: "index_entries_on_sheet_id", using: :btree
 
-  create_table "income_items", force: :cascade do |t|
-    t.string   "name",              null: false
-    t.integer  "amount",            null: false
-    t.integer  "monthly_report_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+  create_table "entry_categories", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "income_items", ["monthly_report_id"], name: "index_income_items_on_monthly_report_id", using: :btree
 
   create_table "links", force: :cascade do |t|
     t.string   "name",        null: false
@@ -89,15 +91,6 @@ ActiveRecord::Schema.define(version: 20161214214706) do
 
   add_index "loans", ["deal_id"], name: "index_loans_on_deal_id", using: :btree
 
-  create_table "monthly_reports", force: :cascade do |t|
-    t.string   "month_year"
-    t.integer  "property_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "monthly_reports", ["property_id"], name: "index_monthly_reports_on_property_id", using: :btree
-
   create_table "properties", force: :cascade do |t|
     t.string   "address",                         null: false
     t.string   "city",                            null: false
@@ -111,6 +104,15 @@ ActiveRecord::Schema.define(version: 20161214214706) do
   end
 
   add_index "properties", ["user_id"], name: "index_properties_on_user_id", using: :btree
+
+  create_table "sheets", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sheets", ["user_id"], name: "index_sheets_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
