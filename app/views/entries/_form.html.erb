@@ -10,20 +10,20 @@
 					%>
 			</div>
 		</div>
-		<div class="col-lg-4 col-md-4">
+	</div>
+	<div class="row">
+		<div class="col-lg-6 col-md-6">
 			<div class="form-group">
 				<%= f.association :property, 
 						collection: current_user.properties.active.order(:address).map { |p| [p.address, p.id] }, 
-						prompt: 'Choose a property',
 						input_html: {class: 'form-control'}
 					%>
 			</div>
 		</div>
-		<div class="col-lg-4 col-md-4">
+		<div class="col-lg-6  col-md-6">
 			<div class="form-group">
 				<%= f.association :entry_category ,
 						collection: EntryCategory.all.order(:name),
-						prompt: 'Choose a Category',
 						input_html: {class: 'form-control'}
 				%>
 			</div>
@@ -41,7 +41,6 @@
 
 	<div class="row">
 		<div class="col-lg-12">
-			<%#= f.label :description %>
 			<%= f.input :description, as: :text, input_html: {class: 'form-control'} %>
 		</div>
 	</div>
@@ -61,5 +60,7 @@
 			format: "mm/dd/yyyy",
 			orientation: 'bottom'
 		});
+
+		$('select').select2();
 	});
 </script>

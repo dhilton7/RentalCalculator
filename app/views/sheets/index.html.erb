@@ -1,15 +1,21 @@
 <div class="row">
 	<div class="col-lg-6 col-md-6">
-		<h1>My Reports</h1>
+		<div class="header">
+			<h1>My Reports</h1>
+		</div>
 	</div>
 	<div class="col-lg-6 col-md-6">
 		<div class="pull-right">
 			<%= button_tag("New Sheet", class: 'btn btn-primary', id: 'new-sheet-button') %>
 			<div id="sheet-form">
 				<%= simple_form_for(:sheet) do |f| %>
-					<%= f.input :title %>
+					<div class="form-group">
+						<%= f.input :title, 
+								input_html: {class: 'form-control', placeholder: 'Report Title'} 
+						%>
+					</div>
 					<%= f.submit "Create", class: 'btn btn-primary' %>
-					<%= button_tag("Cancel", id: 'cancel-sheet-button') %>
+					<%= button_tag("Cancel", id: 'cancel-sheet-button', class: 'btn btn-default') %>
 				<% end %>
 			</div>
 		</div>

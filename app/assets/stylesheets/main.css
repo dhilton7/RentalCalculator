@@ -67,6 +67,10 @@ body {
 	padding-top: 15px;
 }
 
+form label {
+	display: block;
+}
+
 /* 
 	NAVAIGATION 
 
@@ -204,6 +208,17 @@ body {
 	font-size: 1.3em;
 	float: right;
 }
+
+/*
+	REPORT VIEWS
+
+*/
+
+#sheet-form label {
+	display: none;
+}
+
+
 
 /* 
 	OTHER 
