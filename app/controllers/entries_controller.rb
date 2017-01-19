@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
 
-	before_action :set_entry, only: [:show, :update, :destroy]
+	before_action :set_entry, only: [:show, :edit, :update, :destroy,]
 	before_action :set_sheet
 
 	def new

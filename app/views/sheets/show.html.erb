@@ -36,6 +36,7 @@
 		<th>Property</th>
 		<th>Category</th>
 		<th>Description</th>
+		<th></th>
 	</tr>
 </thead>
 <tbody>
@@ -47,6 +48,7 @@
 		<td><%= entry.property %></td>
 		<td><%= entry.entry_category %></td>
 		<td><%= entry.description %></td>
+		<td><%= link_to "Edit", edit_sheet_entry_path(@sheet, entry), class: 'btn btn-default' %></td>
 	</tr>
 <% end %>
 </tbody>
