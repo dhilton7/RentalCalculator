@@ -1,0 +1,30 @@
+<div class="row">
+	<div class="col-lg-12">
+		<table class="table">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Amount</th>
+				<th>Account</th>
+				<th>Property</th>
+				<th>Category</th>
+				<th>Description</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		<% sheet.entries.each do |entry| %>
+			<tr>
+				<td><%= entry.date.strftime("%m/%d/%Y") %></td>
+				<td><%= number_to_currency(entry.amount) %></td>
+				<td><%= entry.account %></td>
+				<td><%= entry.property %></td>
+				<td><%= entry.entry_category %></td>
+				<td><%= entry.description %></td>
+				<td><%= link_to "Edit", edit_sheet_entry_path(@sheet, entry), class: 'btn btn-default' %></td>
+			</tr>
+		<% end %>
+		</tbody>
+		</table>
+	</div>
+</div>

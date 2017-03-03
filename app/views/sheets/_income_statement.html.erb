@@ -1,0 +1,47 @@
+<div class="col-lg-8">
+	<div class="income">
+	<% EntryCategory.all.each do |ec| %>
+		<div class="row">
+			<div class="col-lg-8"><%= ec.name %></div>
+			<% if ec.debt? %>
+				<div class="col-lg-2 col-lg-offset-2"><%= number_to_currency(sheet.entries.where(entry_category_id: ec.id).map(&:amount).reduce(:+)) || "-" %></div>
+			<% else %>
+				<div class="col-lg-2"><%= number_to_currency(sheet.entries.where(entry_category_id: ec.id).map(&:amount).reduce(:+)) || "-" %></div>
+			<% end %>
+		</div>
+	<% end %>
+	</div>
+</div>
+
+<div class="col-lg-4">
+	<div class="col-lg-12">
+		<div class="top-display">
+			<label>Total Income</label>
+			<p><%= number_to_currency(@sheet.total_credit) %></p>
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<div class="top-display">
+			<label>Operating Expenses</label>
+			<p><%= number_to_currency(@sheet.operating_expenses) %></p>
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<div class="top-display">
+			<label>Total Expenses</label>
+			<p><%= number_to_currency(@sheet.total_debt) %></p>
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<div class="top-display">
+			<label>Net Operating Income</label>
+			<p><%= number_to_currency(@sheet.noi) %></p>
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<div class="top-display">
+			<label>Total Cashflow</label>
+			<p><%= number_to_currency(@sheet.cash_flow) %></p>
+		</div>
+	</div>
+</div>

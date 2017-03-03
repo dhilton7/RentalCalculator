@@ -227,7 +227,14 @@ form label {
 	display: none;
 }
 
+.income {
+	padding-right: 20px;
+	font-size: 1.2em;
+}
 
+.income .col-lg-2 {
+	text-align: right;
+}
 
 /* 
 	OTHER 
